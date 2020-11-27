@@ -51,7 +51,13 @@ message(STATUS "Build BUILD_zlib: ${BUILD_zlib}")
 #Define install directory
 if (NOT DEPS_INSTALL_DIR)
     SET(DEPS_INSTALL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../rte-antares-${CMAKE_BUILD_TYPE})
+
+else()
+    if(NOT IS_ABSOLUTE ${DEPS_INSTALL_DIR})
+        SET(DEPS_INSTALL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/${DEPS_INSTALL_DIR})
+    endif()    
 endif()
+
 
 # Build Needed dependencies
 list(APPEND CMAKE_PREFIX_PATH ${DEPS_INSTALL_DIR})
