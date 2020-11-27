@@ -1,4 +1,4 @@
-name: Linux CI (system libs)
+name: Linux CI
 
 on:
   push:
@@ -28,9 +28,10 @@ jobs:
            cd _build
            cpack -G TGZ
            
-    - name: Archive creation upload
+    - name: Archive upload
       uses: actions/upload-artifact@v2
       with:
         name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}
-        path: _build/antares-deps-*.tar.gz
+        path: |
+          ../rte-antares-deps-${{ matrix.buildtype }}
 

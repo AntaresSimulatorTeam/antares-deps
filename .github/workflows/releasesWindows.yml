@@ -30,11 +30,6 @@ jobs:
            $ARCH='${{ matrix.architecture }}'
            If($ARCH -eq 'x86') {$ARCH='Win32'}
            cmake -B _build -S . -DBUILD_sirius=ON -A $ARCH -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }}
-    
-    - name: Remove dependency compilation directory
-      run: |
-           rm -R ./_build/build_deps
-
            
     - name: Archive creation
       run: |

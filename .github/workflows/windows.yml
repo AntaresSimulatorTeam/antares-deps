@@ -1,4 +1,4 @@
-name: Windows CI (VCPKG)
+name: Windows CI
 
 on:
   push:
@@ -21,14 +21,10 @@ jobs:
     - name: Configure and build
       run: |
            cmake -B _build -S . -DBUILD_sirius=ON -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }}
-    
-    - name: Archive creation
-      run: |
-           cd _build
-           cpack -G ZIP
 
     - name: Archive upload
       uses: actions/upload-artifact@v2
       with:
         name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}
-        path: _build/antares-deps-*.zip
+        path: |
+          ../rte-antares-deps-${{ matrix.buildtype }}
