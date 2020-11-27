@@ -1,0 +1,36 @@
+name: Linux CI (system libs)
+
+on:
+  push:
+    branches:
+      - main
+      - feature/init
+jobs:
+
+  build:
+
+    runs-on: ${{ matrix.os }}
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        buildtype: [Release,Debug]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Configure and build
+      run: |
+           cmake -B _build -S .  -DBUILD_sirius=ON -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }}
+
+    - name: Archive creation
+      run: |
+           cd _build
+           cpack -G TGZ
+           
+    - name: Archive creation upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}
+        path: _build/rte-antares-deps-*.tar.gz
+

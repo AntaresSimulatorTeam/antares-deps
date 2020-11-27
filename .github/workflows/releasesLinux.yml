@@ -1,0 +1,45 @@
+name: Release asset upload (Linux)
+
+on:
+  release:
+    types: [created]
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+  
+jobs:
+
+  windows:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        buildtype: [Release,Debug]
+
+    steps:
+    - uses: actions/checkout@v2 
+    
+    - name: Get release
+      id: get_release
+      uses: bruceadams/get-release@v1.2.0
+
+    - name: Configure and build
+      run: |
+           cmake -B _build -S . -DBUILD_sirius=ON -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }}
+    
+    
+    - name: Archive creation
+      run: |
+           cd _build
+           cpack -G TGZ
+           export TGZ_NAME=$(ls *.tar.gz)
+           echo "TGZ_NAME=$TGZ_NAME" >> $GITHUB_ENV
+           
+    - name: Upload .deb
+      uses: actions/upload-release-asset@v1.0.2
+      with:
+        upload_url: ${{ steps.get_release.outputs.upload_url }}
+        asset_path: _build/${{env.TGZ_NAME}}
+        asset_name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}
+        asset_content_type: application/octet-stream

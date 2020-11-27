@@ -1,0 +1,55 @@
+name: Release asset upload (Windows)
+
+on:
+  release:
+    types: [created]
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+  
+jobs:
+
+  windows:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+        buildtype: [Release,Debug]
+        architecture: [x64,x86]
+
+    steps:
+    - uses: actions/checkout@v2 
+    
+    - name: Get release
+      id: get_release
+      uses: bruceadams/get-release@v1.2.0    
+        
+    - name: Configure and build
+      run: |
+           $ARCH='${{ matrix.architecture }}'
+           If($ARCH -eq 'x86') {$ARCH='Win32'}
+           cmake -B _build -S . -DBUILD_sirius=ON -A $ARCH -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }}
+    
+    - name: Remove dependency compilation directory
+      run: |
+           rm -R ./_build/build_deps
+
+           
+    - name: Archive creation
+      run: |
+           cd _build
+           cpack -G ZIP  
+           $ZIP_NAME=dir *.zip
+           $ZIP_NAME=Split-Path $ZIP_NAME -Leaf
+           echo "::set-env name=ZIP_NAME::$ZIP_NAME"
+           
+    - name: Upload NSIS installer
+      uses: actions/upload-release-asset@v1.0.2
+      with:
+        upload_url: ${{ steps.get_release.outputs.upload_url }}
+        asset_path: _build/${{env.ZIP_NAME}}
+        asset_name: ${{env.ZIP_NAME}}
+        asset_content_type: application/octet-stream
+
+    
