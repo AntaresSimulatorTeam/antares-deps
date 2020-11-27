@@ -21,7 +21,7 @@ jobs:
     
     - name: Configure and build
       run: |
-           cmake -B _build -S .  -DBUILD_sirius=ON -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }}
+           cmake -B _build -S .  -DBUILD_sirius=ON -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=${{ env.working-directory }}/rte-antares-deps-${{ matrix.buildtype }}
 
     - name: Archive creation
       run: |
@@ -33,5 +33,5 @@ jobs:
       with:
         name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}
         path: |
-          ../rte-antares-deps-${{ matrix.buildtype }}
+          rte-antares-deps-${{ matrix.buildtype }}
 
