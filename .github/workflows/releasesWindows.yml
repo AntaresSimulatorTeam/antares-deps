@@ -33,14 +33,14 @@ jobs:
            
     - name: Create archive
       run: |
-           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.zip
+           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}.zip
            
     - name: Upload Archive
       uses: actions/upload-release-asset@v1.0.2
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.zip
-        asset_name: rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.zip
+        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}.zip
+        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}.zip
         asset_content_type: application/zip
 
     

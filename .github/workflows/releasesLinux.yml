@@ -30,12 +30,12 @@ jobs:
            
     - name: Create archive
       run: |
-           tar cvf  rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
+           tar cvf  rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
            
     - name: Upload .deb
       uses: actions/upload-release-asset@v1.0.2
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.tar.gz
-        asset_name: rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.tar.gz
+        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.tar.gz
+        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.tar.gz
         asset_content_type: application/gzip
