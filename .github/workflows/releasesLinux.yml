@@ -26,20 +26,16 @@ jobs:
 
     - name: Configure and build
       run: |
-           cmake -B _build -S . -DBUILD_sirius=ON -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }}
-    
-    
-    - name: Archive creation
+           cmake -B _build -S . -DBUILD_sirius=ON -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+           
+    - name: Create archive
       run: |
-           cd _build
-           cpack -G TGZ
-           export TGZ_NAME=$(ls *.tar.gz)
-           echo "TGZ_NAME=$TGZ_NAME" >> $GITHUB_ENV
+           tar cvf  rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
            
     - name: Upload .deb
       uses: actions/upload-release-asset@v1.0.2
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: _build/${{env.TGZ_NAME}}
-        asset_name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}
-        asset_content_type: application/octet-stream
+        asset_path: rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.tar.gz
+        asset_name: rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.tar.gz
+        asset_content_type: application/gzip

@@ -29,22 +29,18 @@ jobs:
       run: |
            $ARCH='${{ matrix.architecture }}'
            If($ARCH -eq 'x86') {$ARCH='Win32'}
-           cmake -B _build -S . -DBUILD_sirius=ON -A $ARCH -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }}
+           cmake -B _build -S . -DBUILD_sirius=ON -A $ARCH -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
            
-    - name: Archive creation
+    - name: Create archive
       run: |
-           cd _build
-           cpack -G ZIP  
-           $ZIP_NAME=dir *.zip
-           $ZIP_NAME=Split-Path $ZIP_NAME -Leaf
-           echo "::set-env name=ZIP_NAME::$ZIP_NAME"
+           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.zip
            
-    - name: Upload NSIS installer
+    - name: Upload Archive
       uses: actions/upload-release-asset@v1.0.2
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: _build/${{env.ZIP_NAME}}
-        asset_name: ${{env.ZIP_NAME}}
-        asset_content_type: application/octet-stream
+        asset_path: rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.zip
+        asset_name: rte-antares-deps-${{ matrix.buildtype }}-${{ matrix.architecture }}.zip
+        asset_content_type: application/zip
 
     
