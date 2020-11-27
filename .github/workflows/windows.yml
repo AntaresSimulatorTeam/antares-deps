@@ -14,17 +14,18 @@ jobs:
       matrix:
         os: [windows-latest]
         buildtype: [Release,Debug]
+        system_build :[ON,OFF]
 
     steps:
     - uses: actions/checkout@v2
         
     - name: Configure and build
       run: |
-           cmake -B _build -S . -DBUILD_DEPS=ON -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+           cmake -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
 
     - name: Archive upload
       uses: actions/upload-artifact@v2
       with:
-        name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}
+        name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.system_build }}
         path: |
           rte-antares-deps-${{ matrix.buildtype }}

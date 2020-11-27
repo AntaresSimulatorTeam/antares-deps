@@ -15,7 +15,7 @@ endif()
 #CMake function to build dependancy from git
 include("cmake/utils.cmake")
 
-option(BUILD_DEPS "Build all dependencies" OFF)
+option(BUILD_ALL "Build all dependencies" OFF)
 message(STATUS "Build all dependencies: ${BUILD_DEPS}")
 
 option(USE_ORTOOLS_STABLE "Use OR-Tools stable instead of RTE OR-Tools branch with Sirius support" OFF)
@@ -24,28 +24,34 @@ message(STATUS "Use OR-Tools stable instead of RTE OR-Tools branch with Sirius s
 # IF BUILD_DEPS=ON THEN Force all BUILD_*=ON
 include(CMakeDependentOption)
 
+CMAKE_DEPENDENT_OPTION(BUILD_system "Build dependencies available on system package manager" OFF
+		"NOT BUILD_ALL" ON)
+        
+CMAKE_DEPENDENT_OPTION(BUILD_not_system "Build dependencies not available on system package manager" OFF
+		"NOT BUILD_ALL" ON)
+
 CMAKE_DEPENDENT_OPTION(BUILD_sirius "Build sirius solver dependency Library" OFF
-		"NOT BUILD_DEPS" ON)
+		"NOT BUILD_not_system" ON)
 message(STATUS "Build sirius solver: ${BUILD_sirius}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_ortools "Build BUILD_ortools dependency Library" OFF
-		"NOT BUILD_DEPS" ON)
+		"NOT BUILD_not_system" ON)
 message(STATUS "Build OR-Tools: ${BUILD_ortools}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_wxWidgets "Build wxWidgets dependency Library" OFF
-  "NOT BUILD_DEPS" ON)
+  "NOT BUILD_system" ON)
 message(STATUS "Build wxWidgets: ${BUILD_wxWidgets}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_OPENSSL "Build OpenSSL dependency Library" OFF
-  "NOT BUILD_DEPS" ON)
+  "NOT BUILD_system" ON)
 message(STATUS "Build BUILD_OPENSSL: ${BUILD_OPENSSL}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_curl "Build curl dependency Library" OFF
-  "NOT BUILD_DEPS" ON)
+  "NOT BUILD_system" ON)
 message(STATUS "Build BUILD_curl: ${BUILD_curl}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_zlib "Build zlib dependency Library" OFF
-  "NOT BUILD_DEPS" ON)
+  "NOT BUILD_system" ON)
 message(STATUS "Build BUILD_zlib: ${BUILD_zlib}")
 
 #Define install directory
@@ -63,12 +69,3 @@ endif()
 list(APPEND CMAKE_PREFIX_PATH ${DEPS_INSTALL_DIR})
 
 add_subdirectory(cmake/dependencies)
-
-install(DIRECTORY ${DEPS_INSTALL_DIR}
-  DESTINATION .)
-
-include(CPack)
-set(CPACK_PROJECT_NAME "rte-antares-deps")
-set(CPACK_PACKAGE_VERSION_MAJOR 0)
-set(CPACK_PACKAGE_VERSION_MINOR 1)
-set(CPACK_PACKAGE_VERSION_PATCH 0)
