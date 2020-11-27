@@ -14,7 +14,7 @@ jobs:
       matrix:
         os: [windows-latest]
         buildtype: [Release,Debug]
-        system_build :[ON,OFF]
+        system_build: [ON,OFF]
 
     steps:
     - uses: actions/checkout@v2

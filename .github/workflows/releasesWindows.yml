@@ -17,7 +17,7 @@ jobs:
         os: [windows-latest]
         buildtype: [Release,Debug]
         architecture: [x64,x86]
-        system_build :[ON,OFF]
+        system_build: [ON,OFF]
 
     steps:
     - uses: actions/checkout@v2 
