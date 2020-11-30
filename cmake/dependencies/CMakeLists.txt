@@ -117,6 +117,12 @@ if(BUILD_wxWidgets)
 #Check if wxWidgets is not already available
 find_package(wxWidgets)
 
+#If wxWidgets is not found it could mean that precompiled librairies are used : Define wxWidgets_ROOT_DIR and check again
+if (NOT wxWidgets_FOUND)
+    set(wxWidgets_ROOT_DIR ${DEPS_INSTALL_DIR})
+    find_package(wxWidgets)
+endif()
+
 if (NOT wxWidgets_FOUND)
 
   build_git_dependency(
@@ -129,6 +135,9 @@ if (NOT wxWidgets_FOUND)
     CMAKE_ARGS
       -DwxBUILD_SHARED=OFF
   ) 
+  
+  # Define wxWidgets_ROOT_DIR
+  set(wxWidgets_ROOT_DIR ${DEPS_INSTALL_DIR})
   
 endif()
 

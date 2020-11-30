@@ -104,8 +104,3 @@ if(BUILD_OPENSSL)
 		SET(OPENSSL_LIBRARIES ${OPENSSL_LIBRARIES} "dl")    
 	endif()	 
 endif()
-
-if(BUILD_wxWidgets)
-	# Define wxWidgets_ROOT_DIR
-	set(wxWidgets_ROOT_DIR ${DEPS_INSTALL_DIR})
-endif()
