@@ -16,6 +16,11 @@ jobs:
         os: [ubuntu-latest]
         buildtype: [Release,Debug]
         system_build: [ON,OFF]
+        include:
+          - system_build: ON
+            build_name: "all"
+          - system_build: OFF
+            build_name: "solver"
 
     steps:
     - uses: actions/checkout@v2
@@ -32,7 +37,9 @@ jobs:
     - name: Archive upload
       uses: actions/upload-artifact@v2
       with:
-        name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.system_build }}
+      
+        if: "!contains(github.event.head_commit.message, '[skip ci]')"
+        name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}
         path: |
           rte-antares-deps-${{ matrix.buildtype }}
 
