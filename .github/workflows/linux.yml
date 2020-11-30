@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        buildtype: [Release,Debug]
+        buildtype: [Release]
         system_build: [ON,OFF]
         include:
           - system_build: ON

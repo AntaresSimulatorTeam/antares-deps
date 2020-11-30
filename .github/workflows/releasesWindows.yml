@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest]
-        buildtype: [Release,Debug]
+        buildtype: [Release]
         architecture: [x64,x86]
         system_build: [ON,OFF]
         include:
@@ -39,7 +39,7 @@ jobs:
            
     - name: Create archive
       run: |
-           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}-${{ matrix.system_build }}.zip
+           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
            
     - name: Upload Archive
       uses: actions/upload-release-asset@v1.0.2

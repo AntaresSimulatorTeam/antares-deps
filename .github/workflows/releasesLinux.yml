@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        buildtype: [Release,Debug]
+        buildtype: [Release]
         system_build: [ON,OFF]
         include:
           - system_build: ON
@@ -41,7 +41,7 @@ jobs:
            
     - name: Create archive
       run: |
-           tar cvf  rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.system_build }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
+           tar cvf  rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
            
     - name: Upload .deb
       uses: actions/upload-release-asset@v1.0.2

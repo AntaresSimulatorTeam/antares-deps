@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest]
-        buildtype: [Release,Debug]
+        buildtype: [Release]
         system_build: [ON,OFF]
         include:
           - system_build: ON
