@@ -60,7 +60,7 @@ message(STATUS "Build BUILD_BOOST: ${BUILD_BOOST}")
 
 #Define install directory
 if (NOT DEPS_INSTALL_DIR)
-    SET(DEPS_INSTALL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../rte-antares-${CMAKE_BUILD_TYPE})
+    SET(DEPS_INSTALL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../rte-antares-deps-${CMAKE_BUILD_TYPE})
 
 else()
     if(NOT IS_ABSOLUTE ${DEPS_INSTALL_DIR})
