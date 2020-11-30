@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feature/init
+      - feature/*
 jobs:
 
   build:
@@ -37,8 +37,6 @@ jobs:
     - name: Archive upload
       uses: actions/upload-artifact@v2
       with:
-      
-        if: "!contains(github.event.head_commit.message, '[skip ci]')"
         name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}
         path: |
           rte-antares-deps-${{ matrix.buildtype }}

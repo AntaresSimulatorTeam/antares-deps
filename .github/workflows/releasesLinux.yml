@@ -17,6 +17,11 @@ jobs:
         os: [ubuntu-latest]
         buildtype: [Release,Debug]
         system_build: [ON,OFF]
+        include:
+          - system_build: ON
+            build_name: "all"
+          - system_build: OFF
+            build_name: "solver"
 
     steps:
     - uses: actions/checkout@v2 
@@ -42,6 +47,6 @@ jobs:
       uses: actions/upload-release-asset@v1.0.2
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.system_build }}.tar.gz
-        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.system_build }}.tar.gz
+        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz
+        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz
         asset_content_type: application/gzip

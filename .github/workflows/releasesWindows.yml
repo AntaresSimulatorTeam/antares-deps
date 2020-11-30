@@ -18,6 +18,11 @@ jobs:
         buildtype: [Release,Debug]
         architecture: [x64,x86]
         system_build: [ON,OFF]
+        include:
+          - system_build: ON
+            build_name: "all"
+          - system_build: OFF
+            build_name: "solver"
 
     steps:
     - uses: actions/checkout@v2 
@@ -40,8 +45,8 @@ jobs:
       uses: actions/upload-release-asset@v1.0.2
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}-${{ matrix.system_build }}.zip
-        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}-${{ matrix.system_build }}.zip
+        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
+        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
         asset_content_type: application/zip
 
     
