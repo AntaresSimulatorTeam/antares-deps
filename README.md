@@ -29,7 +29,6 @@ Dependency are built at configure time using the option : `-DBUILD_ALL=ON` (`OFF
 
 Librairies are compiled with static option (except for Sirius solver).
 
-When `BUILD_CURL` option is used, `BUILD_OPENSSL` option is added.
 Note :
 > You can build all system librairies with `-DBUILD_SYSTEM=ON`
 
