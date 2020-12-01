@@ -43,3 +43,4 @@ Note :
 ## Choose OR-Tools branch
 OR-Tools stable branch can be used with `-DUSE_ORTOOLS_STABLE=ON` (`OFF` by default).
 Otherwise a [fork from RTE](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) is used.
+

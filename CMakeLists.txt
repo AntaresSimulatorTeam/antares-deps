@@ -34,7 +34,7 @@ CMAKE_DEPENDENT_OPTION(BUILD_sirius "Build sirius solver dependency Library" OFF
 		"NOT BUILD_not_system" ON)
 message(STATUS "Build sirius solver: ${BUILD_sirius}")
 
-CMAKE_DEPENDENT_OPTION(BUILD_ortools "Build BUILD_ortools dependency Library" OFF
+CMAKE_DEPENDENT_OPTION(BUILD_ortools "Build OR-Tools dependency Library" OFF
 		"NOT BUILD_not_system" ON)
 message(STATUS "Build OR-Tools: ${BUILD_ortools}")
 
@@ -68,6 +68,7 @@ else()
     endif()    
 endif()
 
+message(STATUS "DEPS_INSTALL_DIR : ${DEPS_INSTALL_DIR}")
 
 # Build Needed dependencies
 list(APPEND CMAKE_PREFIX_PATH ${DEPS_INSTALL_DIR})
@@ -104,3 +105,4 @@ if(BUILD_OPENSSL)
 		SET(OPENSSL_LIBRARIES ${OPENSSL_LIBRARIES} "dl")    
 	endif()	 
 endif()
+

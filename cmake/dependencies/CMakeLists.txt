@@ -167,7 +167,7 @@ endif()
 endif()
 
 #####################
-##  ORTOOLS  ##
+##  OR-TOOLS       ##
 #####################
 if(BUILD_ortools)
 
@@ -176,19 +176,19 @@ find_package(ortools)
 
 if(NOT ortools_FOUND)
 
-set(REPOSITORY "https://github.com/AntaresSimulatorTeam/or-tools.git")
-set(TAG "rte_dev_sirius")
-set(CMAKE_ARGS "-DUSE_SIRIUS=ON")
-
 if (USE_ORTOOLS_STABLE)
 	set(REPOSITORY "https://github.com/google/or-tools.git")
 	set(TAG "v7.8")
 	set(CMAKE_ARGS "")
+else()
+    set(REPOSITORY "https://github.com/AntaresSimulatorTeam/or-tools.git")
+    set(TAG "rte_dev_sirius")
+    set(CMAKE_ARGS "-DUSE_SIRIUS=ON")
 endif()
 
 build_git_dependency(
     NAME
-      ortools
+      or-tools
     REPOSITORY
       ${REPOSITORY}
     TAG

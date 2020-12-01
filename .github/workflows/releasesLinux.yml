@@ -50,3 +50,4 @@ jobs:
         asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz
         asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz
         asset_content_type: application/gzip
+        
