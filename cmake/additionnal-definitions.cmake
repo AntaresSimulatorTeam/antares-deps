@@ -27,3 +27,10 @@ if(BUILD_OPENSSL)
 	endif()
     
 endif()
+
+if(BUILD_wxWidgets)
+
+  # Define wxWidgets_ROOT_DIR
+  set(wxWidgets_ROOT_DIR ${DEPS_INSTALL_DIR})
+
+endif()

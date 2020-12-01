@@ -134,10 +134,7 @@ if (NOT wxWidgets_FOUND)
       "v3.1.3"
     CMAKE_ARGS
       -DwxBUILD_SHARED=OFF
-  ) 
-  
-  # Define wxWidgets_ROOT_DIR
-  set(wxWidgets_ROOT_DIR ${DEPS_INSTALL_DIR})
+  )
   
 endif()
 
