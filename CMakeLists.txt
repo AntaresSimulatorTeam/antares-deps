@@ -1,5 +1,6 @@
-project(antares-deps)
 cmake_minimum_required(VERSION 3.0)
+
+project(antares-deps NONE)
 
 set(DEFAULT_BUILD_TYPE Release)
 
