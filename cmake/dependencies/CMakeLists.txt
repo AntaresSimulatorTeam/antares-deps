@@ -153,9 +153,9 @@ build_git_dependency(
     NAME
       sirius
     REPOSITORY
-      "https://github.com/AntaresSimulatorTeam/sirius-solver.git"
+      "https://github.com/rte-france/sirius-solver.git"
     TAG
-      "Antares_VCPKG"
+      "metrix"
     SOURCE_SUBDIR
       "src"
   )
@@ -175,11 +175,11 @@ if(NOT ortools_FOUND)
 
 if (USE_ORTOOLS_STABLE)
 	set(REPOSITORY "https://github.com/google/or-tools.git")
-	set(TAG "v7.8")
+	set(TAG "stable")
 	set(CMAKE_ARGS "")
 else()
-    set(REPOSITORY "https://github.com/AntaresSimulatorTeam/or-tools.git")
-    set(TAG "rte_dev_sirius")
+    set(REPOSITORY "https://github.com/rte-france/or-tools.git")
+    set(TAG "rte_dev")
     set(CMAKE_ARGS "-DUSE_SIRIUS=ON")
 endif()
 
@@ -191,7 +191,7 @@ build_git_dependency(
     TAG
       ${TAG}
     CMAKE_ARGS
-      "${CMAKE_ARGS} -DUSE_COINOR=ON -DBUILD_PYTHON=OFF -DBUILD_TESTING=OFF -DBUILD_DEPS=ON"
+      "${CMAKE_ARGS} -DUSE_COINOR=ON -DBUILD_PYTHON=OFF -DBUILD_TESTING=OFF -DBUILD_DEPS=ON -DBUILD_SAMPLES=OFF -DBUILD_EXAMPLES=OFF -DBUILD_FLATZINC=OFF"
   )
 endif()
 
