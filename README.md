@@ -3,8 +3,8 @@
  ANTARES depends on severals mandatory libraries. 
  - [OpenSSL](https://github.com/openssl/openssl)
  - [CURL](https://github.com/curl/curl)
- - [Sirius Solver](https://github.com/AntaresSimulatorTeam/sirius-solver/tree/Antares_VCPKG) (fork from [RTE](https://github.com/rte-france/sirius-solver/tree/Antares_VCPKG))
- - [OR-Tools](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) (fork from [RTE](https://github.com/rte-france/or-tools/tree/rte_dev_sirius) based on official OR-Tools github)
+ - [Sirius Solver](https://github.com/rte-france/sirius-solver/tree/antares_integration)
+ - [OR-Tools](https://github.com/rte-france/or-tools/tree/rte_dev) (fork from RTE for Sirius integration based on official OR-Tools github)
  - [wxWidgets](https://github.com/wxWidgets/wxWidgets)
  (Only for the complete Antares Simulator solution with GUI)
  - Boost librairies : test process filesystem regex dll (Only for unit tests)
@@ -41,5 +41,5 @@ Note :
 
 ## Choose OR-Tools branch
 OR-Tools stable branch can be used with `-DUSE_ORTOOLS_STABLE=ON` (`OFF` by default).
-Otherwise a [fork from RTE](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) is used.
+Otherwise a [fork from RTE](https://github.com/rte-france/or-tools/tree/rte_dev) is used.
 
