@@ -1,0 +1,37 @@
+name: Windows CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+jobs:
+
+  windows:
+
+    runs-on: ${{ matrix.os }}
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    strategy:
+      matrix:
+        os: [windows-latest]
+        buildtype: [Release]
+        system_build: [ON,OFF]
+        include:
+          - system_build: ON
+            build_name: "all"
+          - system_build: OFF
+            build_name: "solver"
+
+    steps:
+    - uses: actions/checkout@v2
+        
+    - name: Configure and build
+      run: |
+           cmake -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+
+    - name: Archive upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}
+        path: |
+          rte-antares-deps-${{ matrix.buildtype }}

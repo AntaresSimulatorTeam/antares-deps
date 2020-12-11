@@ -1,0 +1,52 @@
+name: Release asset upload (Windows)
+
+on:
+  release:
+    types: [created]
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+  
+jobs:
+
+  windows:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+        buildtype: [Release]
+        architecture: [x64,x86]
+        system_build: [ON,OFF]
+        include:
+          - system_build: ON
+            build_name: "all"
+          - system_build: OFF
+            build_name: "solver"
+
+    steps:
+    - uses: actions/checkout@v2 
+    
+    - name: Get release
+      id: get_release
+      uses: bruceadams/get-release@v1.2.0    
+        
+    - name: Configure and build
+      run: |
+           $ARCH='${{ matrix.architecture }}'
+           If($ARCH -eq 'x86') {$ARCH='Win32'}
+           cmake -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -A $ARCH -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+           
+    - name: Create archive
+      run: |
+           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
+           
+    - name: Upload Archive
+      uses: actions/upload-release-asset@v1.0.2
+      with:
+        upload_url: ${{ steps.get_release.outputs.upload_url }}
+        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
+        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
+        asset_content_type: application/zip
+
+    
