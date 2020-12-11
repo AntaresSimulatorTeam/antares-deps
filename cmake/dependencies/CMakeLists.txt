@@ -155,7 +155,7 @@ build_git_dependency(
     REPOSITORY
       "https://github.com/rte-france/sirius-solver.git"
     TAG
-      "antares-integration-v1"
+      "antares_integration"
     SOURCE_SUBDIR
       "src"
   )
