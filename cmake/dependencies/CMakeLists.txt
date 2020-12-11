@@ -155,7 +155,7 @@ build_git_dependency(
     REPOSITORY
       "https://github.com/rte-france/sirius-solver.git"
     TAG
-      "antares_integration"
+      "antares-integration-v1"
     SOURCE_SUBDIR
       "src"
   )
@@ -179,7 +179,7 @@ if (USE_ORTOOLS_STABLE)
 	set(CMAKE_ARGS "")
 else()
     set(REPOSITORY "https://github.com/rte-france/or-tools.git")
-    set(TAG "rte_dev")
+    set(TAG "antares-integration-v1")
     set(CMAKE_ARGS "-DUSE_SIRIUS=ON")
 endif()
 
