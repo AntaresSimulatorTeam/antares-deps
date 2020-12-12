@@ -1,3 +1,11 @@
+#Add option to pass -A for windows build
+if(WIN32 OR WIN64)
+    if (CMAKE_GENERATOR_PLATFORM)
+        set(CMAKE_ARGS "-A ${CMAKE_GENERATOR_PLATFORM}")
+    endif()
+endif()
+
+
 ##############
 ##  OpenSSL  ##
 ##############
@@ -133,7 +141,7 @@ if (NOT wxWidgets_FOUND)
     TAG
       "v3.1.3"
     CMAKE_ARGS
-      -DwxBUILD_SHARED=OFF
+      "${CMAKE_ARGS} -DwxBUILD_SHARED=OFF"
   )
   
 endif()
@@ -158,6 +166,8 @@ build_git_dependency(
       "antares_integration"
     SOURCE_SUBDIR
       "src"
+    CMAKE_ARGS
+      ${CMAKE_ARGS}
   )
 endif()
   
@@ -176,11 +186,10 @@ if(NOT ortools_FOUND)
 if (USE_ORTOOLS_STABLE)
 	set(REPOSITORY "https://github.com/google/or-tools.git")
 	set(TAG "stable")
-	set(CMAKE_ARGS "")
 else()
     set(REPOSITORY "https://github.com/rte-france/or-tools.git")
     set(TAG "antares-integration-v1")
-    set(CMAKE_ARGS "-DUSE_SIRIUS=ON")
+    set(CMAKE_ARGS "${CMAKE_ARGS} -DUSE_SIRIUS=ON")
 endif()
 
 build_git_dependency(
