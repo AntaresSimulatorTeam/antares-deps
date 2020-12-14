@@ -51,10 +51,6 @@ CMAKE_DEPENDENT_OPTION(BUILD_curl "Build curl dependency Library" OFF
   "NOT BUILD_system" ON)
 message(STATUS "Build BUILD_curl: ${BUILD_curl}")
 
-CMAKE_DEPENDENT_OPTION(BUILD_zlib "Build zlib dependency Library" OFF
-  "NOT BUILD_system" ON)
-message(STATUS "Build BUILD_zlib: ${BUILD_zlib}")
-
 CMAKE_DEPENDENT_OPTION(BUILD_BOOST "Download and build boost needed libraries" OFF 
   "NOT BUILD_system" ON)
 message(STATUS "Build BUILD_BOOST: ${BUILD_BOOST}")

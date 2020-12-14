@@ -16,7 +16,7 @@ jobs:
       matrix:
         os: [windows-latest]
         buildtype: [Release]
-        architecture: [x64,x86]
+        architecture: [x64]
         system_build: [ON,OFF]
         include:
           - system_build: ON
@@ -33,9 +33,7 @@ jobs:
         
     - name: Configure and build
       run: |
-           $ARCH='${{ matrix.architecture }}'
-           If($ARCH -eq 'x86') {$ARCH='Win32'}
-           cmake -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -A $ARCH -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+           cmake -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
            
     - name: Create archive
       run: |
