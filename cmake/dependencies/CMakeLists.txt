@@ -161,9 +161,9 @@ build_git_dependency(
     NAME
       sirius
     REPOSITORY
-      "https://github.com/rte-france/sirius-solver.git"
+      "https://github.com/AntaresSimulatorTeam/sirius-solver.git"
     TAG
-      "antares_integration"
+      "Antares_VCPKG"
     SOURCE_SUBDIR
       "src"
     CMAKE_ARGS
@@ -187,8 +187,8 @@ if (USE_ORTOOLS_STABLE)
 	set(REPOSITORY "https://github.com/google/or-tools.git")
 	set(TAG "stable")
 else()
-    set(REPOSITORY "https://github.com/rte-france/or-tools.git")
-    set(TAG "antares-integration-v1")
+    set(REPOSITORY "https://github.com/AntaresSimulatorTeam/or-tools.git")
+    set(TAG "rte_dev_sirius")
     set(CMAKE_ARGS "${CMAKE_ARGS} -DUSE_SIRIUS=ON")
 endif()
 
