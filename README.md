@@ -43,3 +43,12 @@ Note :
 OR-Tools stable branch can be used with `-DUSE_ORTOOLS_STABLE=ON` (`OFF` by default).
 Otherwise a [fork from RTE](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) is used.
 
+## Using pre-compiled Antares external librairies
+For some libraries additionnal definitions are needed for correct library use :
+- OPENSSL
+- CURL
+- wxWidgets
+
+When using pre-compiled library in Antares Simulator or antaresXpansion in CMake configure step, an additionnal option is needed for theses libraries `-DUSE_PRECOMPILED_EXT=ON`
+
+`cmake -B _build -S src -DDEPS_INSTALL_DIR=<deps_install_dir> -DUSE_PRECOMPILED_EXT=ON`
