@@ -32,5 +32,7 @@ if(BUILD_wxWidgets OR USE_PRECOMPILED_EXT)
 
   # Define wxWidgets_ROOT_DIR
   set(wxWidgets_ROOT_DIR ${DEPS_INSTALL_DIR})
+  
+  set(wxWidgets_USE_STATIC ON)
 
 endif()
