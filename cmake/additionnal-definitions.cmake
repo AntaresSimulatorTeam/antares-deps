@@ -1,4 +1,4 @@
-if(BUILD_curl)
+if(BUILD_curl OR USE_PRECOMPILED_EXT)
 
 	# ADD CURL_STATICLIB definition 
 	add_definitions(-DCURL_STATICLIB) 
@@ -18,7 +18,7 @@ if(BUILD_curl)
     
 endif()
 
-if(BUILD_OPENSSL)
+if(BUILD_OPENSSL OR USE_PRECOMPILED_EXT)
 
 	if(WIN32 OR WIN64)
     	else()
@@ -28,9 +28,16 @@ if(BUILD_OPENSSL)
     
 endif()
 
-if(BUILD_wxWidgets)
+if(BUILD_wxWidgets OR USE_PRECOMPILED_EXT)
 
   # Define wxWidgets_ROOT_DIR
   set(wxWidgets_ROOT_DIR ${DEPS_INSTALL_DIR})
+  
+  # Define specif wxWidget config option so wxWidget is found with find_package
+  if (UNIX)
+      set(wxWidgets_USE_STATIC ON)
+      set(wxWidgets_CONFIG_EXECUTABLE ${DEPS_INSTALL_DIR}/bin/wx-config)
+      set(wxWidgets_CONFIG_OPTIONS --prefix=${DEPS_INSTALL_DIR})
+  endif()
 
 endif()
