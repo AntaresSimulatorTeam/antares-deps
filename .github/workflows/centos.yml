@@ -30,7 +30,7 @@ jobs:
     - name: Install libraries
       run: |
            yum update -y
-           yum install -y epel-release redhat-lsb-core gcc gcc-c++ make
+           yum install -y epel-release redhat-lsb-core gcc gcc-c++ make cmake
     
     - name: Configure and build
       run: |
