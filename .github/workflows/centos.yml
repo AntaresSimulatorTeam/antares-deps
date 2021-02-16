@@ -29,8 +29,8 @@ jobs:
     
     - name: Install libraries
       run: |
-           sudo yum update
-           sudo yum install -y epel-release redhat-lsb-core gcc gcc-c++ make
+           yum update
+           yum install -y epel-release redhat-lsb-core gcc gcc-c++ make
     
     - name: Configure and build
       run: |
