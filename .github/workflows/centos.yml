@@ -30,10 +30,11 @@ jobs:
     - name: Install libraries
       run: |
            yum update -y
-           yum install -y epel-release redhat-lsb-core gcc gcc-c++ make cmake3
+           yum install -y epel-release redhat-lsb-core gcc gcc-c++ make cmake3 centos-release-scl devtoolset-7
     
     - name: Configure and build
       run: |
+           scl enable devtoolset-7 bash
            cmake3 -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
            
     - name: Archive upload
