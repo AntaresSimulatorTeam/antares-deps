@@ -85,9 +85,12 @@ function(build_git_dependency)
   if(result)
     message(FATAL_ERROR "CMake step for ${GIT_DEP_NAME} failed: ${result}")
   endif()
+  
+  include(ProcessorCount)
+  ProcessorCount(NB_PROC)
 
   execute_process(
-    COMMAND ${CMAKE_COMMAND} --build project_build --config ${CMAKE_BUILD_TYPE}
+    COMMAND ${CMAKE_COMMAND} --build project_build --config ${CMAKE_BUILD_TYPE} -j ${NB_PROC}
     RESULT_VARIABLE result
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${GIT_DEP_NAME})
   if(result)
