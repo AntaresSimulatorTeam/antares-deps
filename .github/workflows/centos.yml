@@ -1,0 +1,45 @@
+name: Centos 7 CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+      - fix/*
+jobs:
+
+  build:
+
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    strategy:
+      matrix:
+        buildtype: [Release]
+        system_build: [ON,OFF]
+        include:
+          - system_build: ON
+            build_name: "all"
+          - system_build: OFF
+            build_name: "solver"           
+            
+    runs-on: ubuntu-latest
+    container: 'centos:7'
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Install libraries
+      run: |
+           sudo yum update
+           sudo yum install -y epel-release redhat-lsb-core gcc gcc-c++ make
+    
+    - name: Configure and build
+      run: |
+           cmake -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+           
+    - name: Archive upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: antares-deps-centos7-${{ matrix.buildtype }}-${{ matrix.build_name }}
+        path: |
+          rte-antares-deps-${{ matrix.buildtype }}
+
