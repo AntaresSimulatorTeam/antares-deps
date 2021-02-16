@@ -30,7 +30,8 @@ Dependency are built at configure time using the option: `-DBUILD_ALL=ON` (`OFF`
 Libraries are compiled with static option (except for Sirius solver).
 
 Note:
-> You can build all system libraries with `-DBUILD_SYSTEM=ON`
+> You can build all system libraries with : `-DBUILD_SYSTEM=ON` (default `OFF`)
+> You can build libraries not available on system with `-DBUILD_not_system=ON` (default `ON`). Sirius solver and OR-Tools will be built.
 
 
 ## Defining dependency install directory
