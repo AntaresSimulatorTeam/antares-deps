@@ -35,7 +35,7 @@ jobs:
     
     - name: Configure and build
       run: |
-           scl enable devtoolset-7
+           source /opt/rh/devtoolset-7/enable
            gcc --version
            
     - name: Archive upload
