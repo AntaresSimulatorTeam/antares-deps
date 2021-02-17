@@ -30,7 +30,7 @@ jobs:
     - name: Install libraries
       run: |
            yum update -y
-           yum install -y epel-release redhat-lsb-core gcc gcc-c++ make cmake3 centos-release-scl devtoolset-7
+           yum install -y epel-release redhat-lsb-core gcc gcc-c++ make cmake3 centos-release-scl devtoolset-7 scl-utils
     
     - name: Configure and build
       run: |
