@@ -73,6 +73,8 @@ function(build_git_dependency)
    set (BINARY_DIR "BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/${GIT_DEP_NAME}/build")
   endif()
 
+  #use specific list separator to be able to use a list of CMAKE_PREFIX_PATH
+  string(REPLACE ";" "|" STR_CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}")
 
   configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt.in
