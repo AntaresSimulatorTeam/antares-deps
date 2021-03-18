@@ -18,16 +18,6 @@ if(BUILD_curl OR USE_PRECOMPILED_EXT)
     
 endif()
 
-if(BUILD_OPENSSL OR USE_PRECOMPILED_EXT)
-
-	if(WIN32 OR WIN64)
-    	else()
-		#find_package(OpenSSL doesn't indicate -ldl option
-		SET(OPENSSL_LIBRARIES ${OPENSSL_LIBRARIES} "dl")    
-	endif()
-    
-endif()
-
 if(BUILD_wxWidgets OR USE_PRECOMPILED_EXT)
 
   # Define wxWidgets_ROOT_DIR

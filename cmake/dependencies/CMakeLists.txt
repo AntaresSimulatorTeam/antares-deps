@@ -1,49 +1,4 @@
 ##############
-##  OpenSSL  ##
-##############
-if(BUILD_OPENSSL)
-
-#Check if OpenSSL is not already available
-find_package(OpenSSL)
-
-if (NOT OPENSSL_FOUND)
-
-#TODO : get architecture for windows (can propably be done in a better way)
-if(WIN32 OR WIN64)
-	if(ANTARES_x86_64)
-		set(OPENSSL_ARCH VC-WIN64A)
-	else()			
-		set(OPENSSL_ARCH VC-WIN32)
-	endif()
-	
-	set(CONFIGURE_CALL "perl <SOURCE_DIR>/Configure")
-    set(MAKE_COMMAND "nmake")
-
-else()
-	set(CONFIGURE_CALL "sh <SOURCE_DIR>/config")
-    set(MAKE_COMMAND "make")
-endif()
-
-build_git_dependency(
-    NAME
-      OpenSSL
-    REPOSITORY
-      "https://github.com/openssl/openssl.git"
-    TAG
-      "OpenSSL_1_1_1g"
-	CONFIGURE_COMMAND
-	   "${CONFIGURE_CALL} ${OPENSSL_ARCH} no-asm no-shared --prefix=${DEPS_INSTALL_DIR} --openssldir=${DEPS_INSTALL_DIR}"
-	BUILD_COMMAND
-	   "${MAKE_COMMAND}"
-	INSTALL_COMMAND
-	   "${MAKE_COMMAND}  install_sw"	   
-  )
-  
-endif()
-
-endif()
-
-##############
 ##  curl  ##
 ##############
 if(BUILD_curl)
@@ -54,12 +9,6 @@ find_package(CURL)
 if (NOT CURL_FOUND)
 
 if(WIN32 OR WIN64)
-	if(ANTARES_x86_64)
-		set(OPENSSL_ARCH VC-WIN64A)
-	else()			
-		set(OPENSSL_ARCH VC-WIN32)
-	endif()
-	
 	set(CONFIGURE_CALL "call <SOURCE_DIR>/buildconf.bat")
 	
 	#Need to create curl include install dir for correct installation

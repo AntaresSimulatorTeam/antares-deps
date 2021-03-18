@@ -43,10 +43,6 @@ CMAKE_DEPENDENT_OPTION(BUILD_wxWidgets "Build wxWidgets dependency Library" OFF
   "NOT BUILD_system" ON)
 message(STATUS "Build wxWidgets: ${BUILD_wxWidgets}")
 
-CMAKE_DEPENDENT_OPTION(BUILD_OPENSSL "Build OpenSSL dependency Library" OFF
-  "NOT BUILD_system" ON)
-message(STATUS "Build BUILD_OPENSSL: ${BUILD_OPENSSL}")
-
 CMAKE_DEPENDENT_OPTION(BUILD_curl "Build curl dependency Library" OFF
   "NOT BUILD_system" ON)
 message(STATUS "Build BUILD_curl: ${BUILD_curl}")
