@@ -1,7 +1,6 @@
 # Antares dependencies build
 
  ANTARES depends on severals mandatory libraries. 
- - [CURL](https://github.com/curl/curl)
  - [Sirius Solver](https://github.com/AntaresSimulatorTeam/sirius-solver/tree/Antares_VCPKG) (fork from [RTE](https://github.com/rte-france/sirius-solver/tree/Antares_VCPKG))
  - [OR-Tools](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) (fork from [RTE](https://github.com/rte-france/or-tools/tree/rte_dev_sirius) based on official OR-Tools github)
  - [wxWidgets](https://github.com/wxWidgets/wxWidgets)
@@ -11,7 +10,7 @@
 This repository is used to compile these libraries from sources.
 
 We can distinguish 2 kind of librairies :
-- system librairies : CURL, wxWidgets, Boost
+- system librairies : wxWidgets, Boost
 Theses librairies can be installed from a package manager (apt-get for debian, yum for centos and vcpkg for windows)
 - solver librairies : Sirius Solver, OR-Tools
 Theses librairies can't be installed from a package manager. They must be compiled from sources.
@@ -19,7 +18,6 @@ Theses librairies can't be installed from a package manager. They must be compil
 ## Choose built librairies
 Dependency are built at configure time using the option : `-DBUILD_ALL=ON` (`OFF` by default) or you can compile few of them using the options below.
 
-* CURL (`BUILD_CURL`)
 * wxWidgets (`BUILD_wxWidgets`)
 * Sirius solver (`BUILD_sirius`)
 * OR-Tools (`BUILD_ortools`)
@@ -43,7 +41,6 @@ Otherwise a [fork from RTE](https://github.com/AntaresSimulatorTeam/or-tools/tre
 
 ## Using pre-compiled Antares external librairies
 When pre-compiled libraries are used to buld Antares Simulator or antaresXpansion, some additionnal definitions are needed for correct use of these libraries:
-- CURL
 - wxWidgets
 
 When running the CMake configure step for either Antares Simulator or antaresXpansion, an additionnal option is needed `-DUSE_PRECOMPILED_EXT=ON`. 
