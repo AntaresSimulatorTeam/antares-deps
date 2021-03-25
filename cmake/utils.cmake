@@ -41,38 +41,40 @@ function(build_git_dependency)
     set(PATCH_CMD "git apply \"${GIT_DEP_APPLY_PATCH}\"")
   else()
     set(PATCH_CMD "\"\"")
-  endif() 
+  endif()
 
   if(GIT_DEP_CONFIGURE_COMMAND)
     set(CONFIGURE_COMMAND "CONFIGURE_COMMAND ${GIT_DEP_CONFIGURE_COMMAND}")
   else()
     set(CONFIGURE_COMMAND "#CONFIGURE_COMMAND")
   endif()
-  
+
   if(GIT_DEP_BUILD_COMMAND)
     set(BUILD_COMMAND "BUILD_COMMAND ${GIT_DEP_BUILD_COMMAND}")
   else()
     set(BUILD_COMMAND "#BUILD_COMMAND")
   endif()
-  
+
   if(GIT_DEP_INSTALL_COMMAND)
     set(INSTALL_COMMAND "INSTALL_COMMAND ${GIT_DEP_INSTALL_COMMAND}")
   else()
     set(INSTALL_COMMAND "#INSTALL_COMMAND")
   endif()
-  
+
   if(GIT_DEP_SOURCE_SUBDIR)
     set(SOURCE_SUBDIR "SOURCE_SUBDIR ${GIT_DEP_SOURCE_SUBDIR}")
   else()
     set(SOURCE_SUBDIR "#SOURCE_SUBDIR")
   endif()
 
-  if (GIT_DEP_INSOURCE_BUILD)  
+  if (GIT_DEP_INSOURCE_BUILD)
    set (BINARY_DIR "BUILD_IN_SOURCE 1")
   else()
    set (BINARY_DIR "BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/${GIT_DEP_NAME}/build")
   endif()
 
+  #use specific list separator to be able to use a list of CMAKE_PREFIX_PATH
+  string(REPLACE ";" "|" STR_CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}")
 
   configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt.in
@@ -86,8 +88,11 @@ function(build_git_dependency)
     message(FATAL_ERROR "CMake step for ${GIT_DEP_NAME} failed: ${result}")
   endif()
 
+  include(ProcessorCount)
+  ProcessorCount(NB_PROC)
+
   execute_process(
-    COMMAND ${CMAKE_COMMAND} --build project_build --config ${CMAKE_BUILD_TYPE}
+    COMMAND ${CMAKE_COMMAND} --build project_build --config ${CMAKE_BUILD_TYPE} -j ${NB_PROC}
     RESULT_VARIABLE result
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${GIT_DEP_NAME})
   if(result)

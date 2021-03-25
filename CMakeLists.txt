@@ -28,7 +28,7 @@ include(CMakeDependentOption)
 CMAKE_DEPENDENT_OPTION(BUILD_system "Build dependencies available on system package manager" OFF
 		"NOT BUILD_ALL" ON)
         
-CMAKE_DEPENDENT_OPTION(BUILD_not_system "Build dependencies not available on system package manager" OFF
+CMAKE_DEPENDENT_OPTION(BUILD_not_system "Build dependencies not available on system package manager" ON
 		"NOT BUILD_ALL" ON)
 
 CMAKE_DEPENDENT_OPTION(BUILD_sirius "Build sirius solver dependency Library" OFF
