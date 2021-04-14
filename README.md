@@ -1,8 +1,6 @@
 # Antares dependencies build
 
-ANTARES depends on severals mandatory libraries.
- - [OpenSSL](https://github.com/openssl/openssl)
- - [CURL](https://github.com/curl/curl)
+ ANTARES depends on severals mandatory libraries.
  - [Sirius Solver](https://github.com/AntaresSimulatorTeam/sirius-solver/tree/Antares_VCPKG) (fork from [RTE](https://github.com/rte-france/sirius-solver/tree/Antares_VCPKG))
  - [OR-Tools](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) (fork from [RTE](https://github.com/rte-france/or-tools/tree/rte_dev_sirius) based on official OR-Tools github)
  - [wxWidgets](https://github.com/wxWidgets/wxWidgets)
@@ -12,7 +10,7 @@ ANTARES depends on severals mandatory libraries.
 This repository is used to compile these libraries from sources.
 
 We can distinguish 2 kind of libraries:
-- system libraries: OpenSSL, CURL, wxWidgets, Boost
+- system libraries: wxWidgets, Boost
 Theses libraries can be installed from a package manager (apt-get for debian, yum for centos and vcpkg for windows)
 - solver libraries: Sirius Solver, OR-Tools
 Theses libraries can't be installed from a package manager. They must be compiled from sources.
@@ -20,8 +18,6 @@ Theses libraries can't be installed from a package manager. They must be compile
 ## Choose built libraries
 Dependency are built at configure time using the option: `-DBUILD_ALL=ON` (`OFF` by default) or you can compile few of them using the options below.
 
-* OPENSSL (`BUILD_OPENSSL`)
-* CURL (`BUILD_CURL`)
 * wxWidgets (`BUILD_wxWidgets`)
 * Sirius solver (`BUILD_sirius`)
 * OR-Tools (`BUILD_ortools`)
@@ -46,8 +42,6 @@ Otherwise a [fork from RTE](https://github.com/AntaresSimulatorTeam/or-tools/tre
 
 ## Using pre-compiled Antares external libraries
 When pre-compiled libraries are used to build Antares Simulator or antaresXpansion, some additionnal definitions are needed:
-- OPENSSL
-- CURL
 - wxWidgets
 
 When running the CMake configure step for either Antares Simulator or antaresXpansion, an additionnal option is needed `-DUSE_PRECOMPILED_EXT=ON`.
