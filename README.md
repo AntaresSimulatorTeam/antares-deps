@@ -1,6 +1,6 @@
 # Antares dependencies build
 
- ANTARES depends on severals mandatory libraries.
+ ANTARES Simulation and antaresXpansion depends on severals mandatory libraries.
  - [Sirius Solver](https://github.com/AntaresSimulatorTeam/sirius-solver/tree/Antares_VCPKG) (fork from [RTE](https://github.com/rte-france/sirius-solver/tree/Antares_VCPKG))
  - [OR-Tools](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) (fork from [RTE](https://github.com/rte-france/or-tools/tree/rte_dev_sirius) based on official OR-Tools github)
  - [wxWidgets](https://github.com/wxWidgets/wxWidgets)
@@ -16,29 +16,36 @@ Theses libraries can be installed from a package manager (apt-get for debian, yu
 Theses libraries can't be installed from a package manager. They must be compiled from sources.
 
 ## Choose built libraries
-Dependency are built at configure time using the option: `-DBUILD_ALL=ON` (`OFF` by default) or you can compile few of them using the options below.
+You can choose built librairies with these options :
 
-* wxWidgets (`BUILD_wxWidgets`)
-* Sirius solver (`BUILD_sirius`)
-* OR-Tools (`BUILD_ortools`)
-* Boost (`BUILD_BOOST`)
+|Option | Description | Default |
+|:-------|-------|-------|
+|`BUILD_ALL`|Enable build of ALL external librairies| `OFF`|
+|`BUILD_not_system`|Enable build of external librairies not available on system package manager | `ON`|
+|`BUILD_sirius`|Build Sirius solver | `OFF` (`ON` if `BUILD_not_system`)|
+|`BUILD_ortools`|Build OR-Tools | `OFF` (`ON` if `BUILD_not_system`)|
+|`BUILD_wxWidgets`|Build wxWidgets | `OFF`|
+|`BUILD_BOOST`|Build Boost | `OFF`|
 
-Libraries are compiled with static option (except for Sirius solver).
+Libraries are compiled with static option (except for Sirius solver because OR-Tools use of shared version of Sirius solver).
 
-Note:
-> You can build all system libraries with : `-DBUILD_SYSTEM=ON` (default `OFF`)
-> You can build libraries not available on system with `-DBUILD_not_system=ON` (default `ON`). Sirius solver and OR-Tools will be built.
+## CMake configure option
 
+Here is a list of other available CMake configure option :
 
-## Defining dependency install directory
-Dependency install directory can be specified with `DEPS_INSTALL_DIR`. By default install directory is `<antares_deps_checkout_dir>/../rte-antares-deps-<build_type>`
+|Option | Description | Default |
+|:-------|-------|-------|
+|`CMAKE_BUILD_TYPE` |Define build type. Available values are `Release` and `Debug`  | `Release`|
+|`DEPS_INSTALL_DIR`|Define libraries install directory| `<antares_deps_checkout_dir>/../rte-antares-deps-<build_type>`|
+|`USE_ORTOOLS_STABLE`| Use `stable` branch of OR-Tools github instead of [fork from RTE](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) with sirius solver support| `OFF`|
 
 Note:
 > `DEPS_INSTALL_DIR` is added to `CMAKE_PREFIX_PATH`
 
-## Choose OR-Tools branch
-OR-Tools stable branch can be used with `-DUSE_ORTOOLS_STABLE=ON` (`OFF` by default).
-Otherwise a [fork from RTE](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) is used.
+## Build
+Build is done at CMake configure step :
+
+`cmake -B _build -S . -DDEPS_INSTALL_DIR=<deps_install_dir>`
 
 ## Using pre-compiled Antares external libraries
 When pre-compiled libraries are used to build Antares Simulator or antaresXpansion, some additionnal definitions are needed:
