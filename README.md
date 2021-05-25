@@ -23,7 +23,7 @@ You can choose built librairies with these options :
 |`BUILD_ALL`|Enable build of ALL external librairies| `OFF`|
 |`BUILD_not_system`|Enable build of external librairies not available on system package manager | `ON`|
 |`BUILD_sirius`|Build Sirius solver | `OFF` (`ON` if `BUILD_not_system`)|
-|`BUILD_ortools`|Build OR-Tools | `OFF` (`ON` if `BUILD_not_system`)|
+|`BUILD_ortools`|Build OR-Tools | `OFF`|
 |`BUILD_coin`|Build all COIN librairies | `OFF` (`ON` if `BUILD_not_system`)|
 |`BUILD_ZLIB`|Build OR-Tools | `OFF` (`ON` if `BUILD_ortools`)|
 |`BUILD_absl`|Build OR-Tools | `OFF` (`ON` if `BUILD_ortools`)|
