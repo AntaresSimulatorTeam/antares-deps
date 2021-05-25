@@ -39,7 +39,7 @@ CMAKE_DEPENDENT_OPTION(BUILD_coin "Build all COIN dependency Library" OFF
 		"NOT BUILD_not_system" ON)
 message(STATUS "Build Coin: ${BUILD_coin}")
 
-CMAKE_DEPENDENT_OPTION(BUILD_ortools "Build OR-Tools dependency Library" OFF)
+option(BUILD_ortools "Build OR-Tools dependency Library" OFF)
 message(STATUS "Build OR-Tools: ${BUILD_ortools}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_ZLIB "Build the ZLIB dependency Library" OFF
