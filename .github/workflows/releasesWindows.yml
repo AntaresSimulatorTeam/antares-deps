@@ -35,7 +35,7 @@ jobs:
            
     - name: Create archive
       run: |
-           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.os }}-${{ matrix.architecture }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
+           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
            
     - name: Upload Archive
       uses: actions/upload-release-asset@v1.0.2
