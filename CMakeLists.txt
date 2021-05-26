@@ -51,11 +51,17 @@ CMAKE_DEPENDENT_OPTION(BUILD_absl "Build the abseil-cpp dependency Library" OFF
 message(STATUS "Build abseil-cpp: ${BUILD_absl}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_gflags "Build the gflags dependency Library" OFF
-  "NOT BUILD_ortools" ON)
+  "NOT BUILD_not_system" ON)
+if(BUILD_ortools)
+	SET(BUILD_gflags ON)
+endif()
 message(STATUS "Build gflags: ${BUILD_gflags}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_glog "Build the glog dependency Library" OFF
-  "NOT BUILD_ortools" ON)
+  "NOT BUILD_not_system" ON)
+if(BUILD_ortools)
+	SET(BUILD_glog ON)
+endif()
 message(STATUS "Build glog: ${BUILD_glog}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_Protobuf "Build the Protobuf dependency Library" OFF
