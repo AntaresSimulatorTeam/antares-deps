@@ -35,9 +35,52 @@ CMAKE_DEPENDENT_OPTION(BUILD_sirius "Build sirius solver dependency Library" OFF
 		"NOT BUILD_not_system" ON)
 message(STATUS "Build sirius solver: ${BUILD_sirius}")
 
-CMAKE_DEPENDENT_OPTION(BUILD_ortools "Build OR-Tools dependency Library" OFF
+CMAKE_DEPENDENT_OPTION(BUILD_coin "Build all COIN dependency Library" OFF
 		"NOT BUILD_not_system" ON)
+message(STATUS "Build Coin: ${BUILD_coin}")
+
+option(BUILD_ortools "Build OR-Tools dependency Library" OFF)
 message(STATUS "Build OR-Tools: ${BUILD_ortools}")
+
+CMAKE_DEPENDENT_OPTION(BUILD_ZLIB "Build the ZLIB dependency Library" OFF
+  "NOT BUILD_ortools" ON)
+message(STATUS "Build ZLIB: ${BUILD_ZLIB}")
+
+CMAKE_DEPENDENT_OPTION(BUILD_absl "Build the abseil-cpp dependency Library" OFF
+  "NOT BUILD_ortools" ON)
+message(STATUS "Build abseil-cpp: ${BUILD_absl}")
+
+CMAKE_DEPENDENT_OPTION(BUILD_gflags "Build the gflags dependency Library" OFF
+  "NOT BUILD_ortools" ON)
+message(STATUS "Build gflags: ${BUILD_gflags}")
+
+CMAKE_DEPENDENT_OPTION(BUILD_glog "Build the glog dependency Library" OFF
+  "NOT BUILD_ortools" ON)
+message(STATUS "Build glog: ${BUILD_glog}")
+
+CMAKE_DEPENDENT_OPTION(BUILD_Protobuf "Build the Protobuf dependency Library" OFF
+  "NOT BUILD_ortools" ON)
+message(STATUS "Build Protobuf: ${BUILD_Protobuf}")
+
+CMAKE_DEPENDENT_OPTION(BUILD_CoinUtils "Build the CoinUtils dependency Library" OFF
+  "NOT BUILD_coin" ON)
+message(STATUS "Build CoinUtils: ${BUILD_CoinUtils}")
+
+CMAKE_DEPENDENT_OPTION(BUILD_Osi "Build the Osi dependency Library" OFF
+  "NOT BUILD_coin" ON)
+message(STATUS "Build Osi: ${BUILD_Osi}")
+
+CMAKE_DEPENDENT_OPTION(BUILD_Clp "Build the Clp dependency Library" OFF
+  "NOT BUILD_coin" ON)
+message(STATUS "Build Clp: ${BUILD_Clp}")
+
+CMAKE_DEPENDENT_OPTION(BUILD_Cgl "Build the Cgl dependency Library" OFF
+  "NOT BUILD_coin" ON)
+message(STATUS "Build Cgl: ${BUILD_Cgl}")
+
+CMAKE_DEPENDENT_OPTION(BUILD_Cbc "Build the Cbc dependency Library" OFF
+  "NOT BUILD_coin" ON)
+message(STATUS "Build Cbc: ${BUILD_Cbc}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_wxWidgets "Build wxWidgets dependency Library" OFF
   "NOT BUILD_system" ON)

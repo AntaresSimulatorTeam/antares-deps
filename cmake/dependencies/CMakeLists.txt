@@ -52,6 +52,156 @@ endif()
   
 endif()
 
+############
+##  ZLIB  ##
+############
+if(BUILD_ZLIB)
+  build_git_dependency(
+    NAME
+      ZLIB
+    REPOSITORY
+      "https://github.com/madler/ZLIB.git"
+    TAG
+      "v1.2.11"
+ )
+endif()
+
+##################
+##  ABSEIL-CPP  ##
+##################
+if(BUILD_absl)
+  build_git_dependency(
+    NAME
+      abseil-cpp
+    REPOSITORY
+      "https://github.com/abseil/abseil-cpp.git"
+    TAG
+      "8ba96a8"
+ )
+endif()
+
+##############
+##  GFLAGS  ##
+##############
+if(BUILD_gflags)
+  build_git_dependency(
+    NAME
+      gflags
+    REPOSITORY
+      "https://github.com/gflags/gflags.git"
+    TAG
+      "v2.2.2"
+    CMAKE_ARGS
+      -DINSTALL_SHARED_LIBS:BOOL=OFF
+      -DBUILD_STATIC_LIBS:BOOL=ON
+      -DINSTALL_STATIC_LIBS:BOOL=ON
+  )
+endif()
+
+############
+##  GLOG  ##
+############
+if(BUILD_glog)
+  build_git_dependency(
+    NAME
+      glog
+    REPOSITORY
+      "https://github.com/google/glog.git"
+    TAG
+      "v0.4.0"
+    CMAKE_ARGS
+      -DWITH_GFLAGS:BOOL=OFF
+  )
+endif()
+
+################
+##  Protobuf  ##
+################
+if(BUILD_Protobuf)
+  build_git_dependency(
+    NAME
+      Protobuf
+    REPOSITORY
+      "https://github.com/protocolbuffers/protobuf.git"
+    TAG
+      "v3.11.2"
+    CMAKE_ARGS
+      -Dprotobuf_MSVC_STATIC_RUNTIME:BOOL=OFF
+      -Dprotobuf_BUILD_TESTS:BOOL=OFF
+      "SOURCE_SUBDIR cmake"
+  )
+endif()
+
+#################
+##  Coinutils  ##
+#################
+if(BUILD_CoinUtils)
+  build_git_dependency(
+    NAME
+      CoinUtils
+    REPOSITORY
+      "https://github.com/Mizux/CoinUtils.git"
+    TAG
+      "stable/2.11"
+  )
+endif()
+
+###########
+##  Osi  ##
+###########
+if(BUILD_Osi)
+  build_git_dependency(
+    NAME
+      Osi
+    REPOSITORY
+      "https://github.com/Mizux/Osi.git"
+    TAG
+      "stable/0.108"
+  )
+endif()
+
+###########
+##  Clp  ##
+###########
+if(BUILD_Clp)
+  build_git_dependency(
+    NAME
+      Clp
+    REPOSITORY
+      "https://github.com/Mizux/Clp.git"
+    TAG
+      "stable/1.17"
+  )
+endif()
+
+###########
+##  Cgl  ##
+###########
+if(BUILD_Cgl)
+  build_git_dependency(
+    NAME
+      Cgl
+    REPOSITORY
+      "https://github.com/Mizux/Cgl.git"
+    TAG
+      "stable/0.60"
+  )
+endif()
+
+###########
+##  Cbc  ##
+###########
+if(BUILD_Cbc)
+  build_git_dependency(
+    NAME
+      Cbc
+    REPOSITORY
+      "https://github.com/Mizux/Cbc.git"
+    TAG
+      "stable/2.10"
+  )
+endif()
+
 #####################
 ##  OR-TOOLS       ##
 #####################
@@ -80,7 +230,7 @@ build_git_dependency(
     TAG
       ${TAG}
     CMAKE_ARGS
-      "${CMAKE_ARGS} -DUSE_COINOR=ON -DBUILD_PYTHON=OFF -DBUILD_TESTING=OFF -DBUILD_DEPS=ON -DBUILD_SAMPLES=OFF -DBUILD_EXAMPLES=OFF -DBUILD_FLATZINC=OFF"
+      "${CMAKE_ARGS} -DCMAKE_PREFIX_PATH=${DEPS_INSTALL_DIR} -DBUILD_DEPS=OFF -DUSE_COINOR=ON -DBUILD_PYTHON=OFF -DBUILD_TESTING=OFF -DBUILD_SAMPLES=OFF -DBUILD_EXAMPLES=OFF -DBUILD_FLATZINC=OFF"
   )
 endif()
 

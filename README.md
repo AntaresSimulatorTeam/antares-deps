@@ -23,7 +23,18 @@ You can choose built librairies with these options :
 |`BUILD_ALL`|Enable build of ALL external librairies| `OFF`|
 |`BUILD_not_system`|Enable build of external librairies not available on system package manager | `ON`|
 |`BUILD_sirius`|Build Sirius solver | `OFF` (`ON` if `BUILD_not_system`)|
-|`BUILD_ortools`|Build OR-Tools | `OFF` (`ON` if `BUILD_not_system`)|
+|`BUILD_ortools`|Build OR-Tools | `OFF`|
+|`BUILD_coin`|Build all COIN librairies | `OFF` (`ON` if `BUILD_not_system`)|
+|`BUILD_ZLIB`|Build OR-Tools | `OFF` (`ON` if `BUILD_ortools`)|
+|`BUILD_absl`|Build OR-Tools | `OFF` (`ON` if `BUILD_ortools`)|
+|`BUILD_gflags`|Build OR-Tools | `OFF` (`ON` if `BUILD_ortools`)|
+|`BUILD_glog`|Build OR-Tools | `OFF` (`ON` if `BUILD_ortools`)|
+|`BUILD_Protobuf`|Build OR-Tools | `OFF` (`ON` if `BUILD_ortools`)|
+|`BUILD_CoinUtils`|Build OR-Tools | `OFF` (`ON` if `BUILD_coin`)|
+|`BUILD_Osi`|Build OR-Tools | `OFF` (`ON` if `BUILD_coin`)|
+|`BUILD_Clp`|Build OR-Tools | `OFF` (`ON` if `BUILD_coin`)|
+|`BUILD_Cgl`|Build OR-Tools | `OFF` (`ON` if `BUILD_coin`)|
+|`BUILD_Cbc`|Build OR-Tools | `OFF` (`ON` if `BUILD_coin`)|
 |`BUILD_wxWidgets`|Build wxWidgets | `OFF`|
 |`BUILD_BOOST`|Build Boost | `OFF`|
 

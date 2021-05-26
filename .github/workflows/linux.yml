@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - feature/*
+      - features/*
       - fix/*
 jobs:
 
@@ -16,12 +17,17 @@ jobs:
       matrix:
         os: [ubuntu-20.04]
         buildtype: [Release]
-        system_build: [ON,OFF]
+        build_name: [all,solver,solver-no-ortools]
         include:
-          - system_build: ON
-            build_name: "all"
-          - system_build: OFF
-            build_name: "solver"
+          - build_name: all
+            system_build: ON
+            build_ortools: ON
+          - build_name: solver
+            system_build: OFF
+            build_ortools: ON
+          - build_name: solver-no-ortools
+            system_build: OFF
+            build_ortools: OFF
 
     steps:
     - uses: actions/checkout@v2
@@ -33,7 +39,7 @@ jobs:
     
     - name: Configure and build
       run: |
-           cmake -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+           cmake -B _build -S . -DBUILD_ortools=${{ matrix.build_ortools }} -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
            
     - name: Archive upload
       uses: actions/upload-artifact@v2
