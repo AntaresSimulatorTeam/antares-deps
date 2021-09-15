@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04]
-        buildtype: [Release]
+        buildtype: [Release,Debug]
         build_name: [all,solver,solver-no-ortools]
         include:
           - build_name: all
