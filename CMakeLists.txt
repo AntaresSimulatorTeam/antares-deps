@@ -35,12 +35,36 @@ CMAKE_DEPENDENT_OPTION(BUILD_sirius "Build sirius solver dependency Library" OFF
 		"NOT BUILD_not_system" ON)
 message(STATUS "Build sirius solver: ${BUILD_sirius}")
 
+if(NOT sirius_solver_REPO)
+    set(sirius_solver_REPO "https://github.com/AntaresSimulatorTeam/sirius-solver.git")
+endif()
+if(NOT sirius_solver_BRANCH)
+    set(sirius_solver_BRANCH "Antares_VCPKG")
+endif()
+
+
 CMAKE_DEPENDENT_OPTION(BUILD_coin "Build all COIN dependency Library" OFF
 		"NOT BUILD_not_system" ON)
 message(STATUS "Build Coin: ${BUILD_coin}")
 
 option(BUILD_ortools "Build OR-Tools dependency Library" OFF)
 message(STATUS "Build OR-Tools: ${BUILD_ortools}")
+
+if(NOT ORTOOLS_REPO)
+    set(ORTOOLS_REPO "https://github.com/AntaresSimulatorTeam/or-tools.git")
+endif()
+if(NOT ORTOOLS_BRANCH)
+    set(ORTOOLS_BRANCH "rte_dev_sirius")
+endif()
+if(NOT ORTOOLS_CMAKE_ARGS)
+    set(ORTOOLS_CMAKE_ARGS "-DUSE_SIRIUS=ON")
+endif()
+
+if (USE_ORTOOLS_STABLE)
+    set(ORTOOLS_REPO "https://github.com/google/or-tools.git")
+    set(ORTOOLS_BRANCH "stable")
+    set(ORTOOLS_CMAKE_ARGS "")
+endif()
 
 CMAKE_DEPENDENT_OPTION(BUILD_ZLIB "Build the ZLIB dependency Library" OFF
   "NOT BUILD_ortools" ON)
@@ -108,7 +132,8 @@ endif()
 
 message(STATUS "DEPS_INSTALL_DIR : ${DEPS_INSTALL_DIR}")
 
-# Build Needed dependencies
 list(APPEND CMAKE_PREFIX_PATH ${DEPS_INSTALL_DIR})
+configure_file(repository-config.txt.cmake ${DEPS_INSTALL_DIR}/repository-config.txt)
 
+# Build Needed dependencies
 add_subdirectory(cmake/dependencies)

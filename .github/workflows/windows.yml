@@ -31,11 +31,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Pre-requisites
-      shell: cmd
-      run: |          
-          choco install pkgconfiglite --no-progress
         
     - name: Configure and build
       run: |
