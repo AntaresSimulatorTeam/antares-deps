@@ -48,11 +48,18 @@ Here is a list of other available CMake configure option :
 |:-------|-------|-------|
 |`CMAKE_BUILD_TYPE` |Define build type. Available values are `Release` and `Debug`  | `Release`|
 |`DEPS_INSTALL_DIR`|Define libraries install directory| `<antares_deps_checkout_dir>/../rte-antares-deps-<build_type>`|
-|`USE_ORTOOLS_STABLE`| Use `stable` branch of OR-Tools github instead of [fork from RTE](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) with sirius solver support| `OFF`|
+|`USE_ORTOOLS_STABLE`| Use `stable` branch of OR-Tools github| `OFF`|
+|`ORTOOLS_REPO`| Define OR-Tools repository used| `https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius`|
+|`ORTOOLS_BRANCH`| Define OR-Tools branch used| `rte_dev_sirius`|
+|`ORTOOLS_CMAKE_ARGS`| Define additional cmake args for OR-Tools configuration| `-DUSE_SIRIUS=ON`|
+|`sirius_solver_REPO`| Define Sirius solver repository used| `https://github.com/AntaresSimulatorTeam/sirius-solver.git`|
+|`sirius_solver_BRANCH`| Define Sirius solver branch used| `Antares_VCPKG`|
 
 Note:
 > `DEPS_INSTALL_DIR` is added to `CMAKE_PREFIX_PATH`
 
+Note:
+> OR-Tools and Sirius solver configuration will be written in repository-config.txt
 ## Build
 Build is done at CMake configure step :
 
