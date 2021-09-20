@@ -1,0 +1,41 @@
+name Docker hub publish
+
+on 
+  push
+    branches
+      - develop
+      - features/*
+
+jobs
+
+  docker_hub_publish
+    strategy
+      matrix
+        container
+        - 'centos8'
+        - 'ubuntu'
+        
+    runs-on ubuntu-latest
+    steps
+    - uses actionscheckout@master
+    - name OR-Tools and sirius build
+      uses elgohrPublish-Docker-Github-Action@master
+      with
+        name rte-antares-ortools
+        username ${{ secrets.DOCKER_USERNAME }}
+        password ${{ secrets.DOCKER_PASSWORD }}
+        workdir docker
+        dockerfile ${{ matrix.container }}-ortools
+        cache true
+        tags ${{ matrix.container }}-ortools
+        
+    - name Antares Simulator build
+      uses elgohrPublish-Docker-Github-Action@master
+      with
+        name rte-antares-antares-simulator
+        username ${{ secrets.DOCKER_USERNAME }}
+        password ${{ secrets.DOCKER_PASSWORD }}
+        workdir docker
+        dockerfile ${{ matrix.container }}-antares-build
+        cache true
+        tags ${{ matrix.container }}-antares-build
