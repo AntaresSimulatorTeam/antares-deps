@@ -42,9 +42,9 @@ if(BUILD_sirius)
         NAME
             sirius
         REPOSITORY
-            "https://github.com/AntaresSimulatorTeam/sirius-solver.git"
+            ${sirius_solver_REPO}
         TAG
-            "Antares_VCPKG"
+            ${sirius_solver_BRANCH}
         SOURCE_SUBDIR
             "src"
         )
@@ -265,26 +265,15 @@ if(BUILD_ortools)
     find_package(ortools)
 
     if(NOT ortools_FOUND)
-
-        if (USE_ORTOOLS_STABLE)
-            set(REPOSITORY "https://github.com/google/or-tools.git")
-            set(TAG "stable")
-            set(CMAKE_ARGS "")
-        else()
-            set(REPOSITORY "https://github.com/AntaresSimulatorTeam/or-tools.git")
-            set(TAG "rte_dev_sirius")
-            set(CMAKE_ARGS "-DUSE_SIRIUS=ON")
-        endif()
-
         build_git_dependency(
         NAME
             or-tools
         REPOSITORY
-            ${REPOSITORY}
+            ${ORTOOLS_REPO}
         TAG
-            ${TAG}
+            ${ORTOOLS_BRANCH}
         CMAKE_ARGS
-            "${CMAKE_ARGS} -DCMAKE_PREFIX_PATH=${DEPS_INSTALL_DIR} -DBUILD_DEPS=OFF -DUSE_COINOR=ON -DBUILD_PYTHON=OFF -DBUILD_TESTING=OFF -DBUILD_SAMPLES=OFF -DBUILD_EXAMPLES=OFF -DBUILD_FLATZINC=OFF"
+            "${ORTOOLS_CMAKE_ARGS} -DCMAKE_PREFIX_PATH=${DEPS_INSTALL_DIR} -DBUILD_DEPS=OFF -DUSE_COINOR=ON -DBUILD_PYTHON=OFF -DBUILD_TESTING=OFF -DBUILD_SAMPLES=OFF -DBUILD_EXAMPLES=OFF -DBUILD_FLATZINC=OFF"
         )
     endif()
 
