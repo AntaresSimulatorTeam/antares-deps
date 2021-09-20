@@ -9,24 +9,13 @@ RUN yum install -y epel-release
 # Install requirements
 RUN yum install -y git redhat-lsb-core gcc gcc-c++ make \
     wget \
-    unzip wxGTK3-devel libuuid-devel boost-devel boost-test boost-filesystem boost-regex openssl-devel 
+    unzip wxGTK3-devel libuuid-devel boost-devel boost-test boost-filesystem boost-regex 
 
-# Install CMake3
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.17.3.tar.gz &&\
-    tar -zxvf cmake-3.17.3.tar.gz &&\
-    cd cmake-3.17.3 &&\
-    ./bootstrap &&\
-    make &&\
-    make install &&\
-    cd ..  &&\
-    rm -rf cmake-3.17.3 &&\
-    rm cmake-3.17.3.tar.gz
-    
 # Install xpansion requirements
-RUN yum install -y jsoncpp-devel gtest-devel &&\
-    yum install -y boost-openmpi-devel cmake3 devtoolset-7 environment-modules rpm-build zlib-devel
+RUN yum install -y centos-release-scl scl-utils jsoncpp-devel gtest-devel &&\
+    yum install -y boost-openmpi-devel doxygen graphviz boost-program-options cmake3 devtoolset-7 environment-modules rpm-build zlib-devel
     
 # Add python and pip installation for antares-xpansion
 RUN yum install -y python3-pip &&\
     python3 -m pip install --upgrade pip &&\
-    pip3 install pyinstaller
+    pip3 install pyinstaller pyyaml pytest numpy touch pytest-cov mkdocs mkdocs-material

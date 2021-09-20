@@ -12,7 +12,6 @@ RUN apt-get install -y build-essential git cmake \
     libssl-dev libuuid1 uuid-dev libssh2-1 libssh2-1-dev libidn2-dev libidn11 libidn11-dev libwxgtk3.0-gtk3-dev libb64-dev \
     libboost-test-dev libboost-filesystem-dev libboost-regex-dev libboost-dev
 
-
 # Install xpansion requirements
 RUN git clone https://github.com/google/googletest.git --single-branch &&\
     cd googletest &&\
@@ -20,9 +19,9 @@ RUN git clone https://github.com/google/googletest.git --single-branch &&\
     cmake --build . --target install &&\
     cd .. &&\
     rm -rf googletest &&\
-    apt-get install -y libjsoncpp-dev libgtest-dev libboost-mpi-dev 
+    apt-get install -y libjsoncpp-dev libgtest-dev libboost-mpi-dev libboost-program-options-dev
     
-# Add python and pip installation for antares-xpansion
+# Add python and pip installation for antares-xpansion : TODO use requirements.txt file to indicate requirements
 RUN apt-get install -y python3-pip &&\
     python3 -m pip install --upgrade pip &&\
-    pip3 install pyinstaller
+    pip3 install pyinstaller pyyaml pytest numpy touch pytest-cov mkdocs mkdocs-material
