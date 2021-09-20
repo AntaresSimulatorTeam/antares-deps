@@ -18,11 +18,11 @@ jobs:
         
     runs-on: ubuntu-latest
     steps:
-    - uses: actionscheckout@master
+    - uses: actions/checkout@master
     - name: OR-Tools and sirius build
-      uses: elgohrPublish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: rte-antares-ortools
+        name: antaresrte/rte-antares
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: docker
@@ -31,9 +31,9 @@ jobs:
         tags: ${{ matrix.container }}-ortools
         
     - name: Antares Simulator build
-      uses: elgohrPublish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: rte-antares-antares-simulator
+        name: antaresrte/rte-antares
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: docker
