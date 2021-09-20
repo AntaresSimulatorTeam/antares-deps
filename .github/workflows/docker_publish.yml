@@ -15,6 +15,7 @@ jobs:
         container:
         - 'centos8'
         - 'ubuntu'
+        - 'centos7'
         
     runs-on: ubuntu-latest
     steps:
