@@ -1,5 +1,7 @@
 FROM centos:7
 
+ARG antares-deps-version
+
 # Install requirements : update repo
 RUN yum update -y
 
@@ -20,7 +22,7 @@ RUN yum install -y python3-pip &&\
     python3 -m pip install --upgrade pip &&\
     pip3 install pyinstaller pyyaml pytest numpy touch pytest-cov mkdocs mkdocs-material
 
-# Download and extract pre-compiled libraries : TODO define release version from ARGS
-RUN wget https://github.com/AntaresSimulatorTeam/antares-deps/releases/download/v2.0.0-rc2/rte-antares-deps-centos7-Release-solver.tar.gz
+# Download and extract pre-compiled libraries
+RUN wget https://github.com/AntaresSimulatorTeam/antares-deps/releases/download/v${antares-deps-version}/rte-antares-deps-centos7-Release-solver.tar.gz
 RUN tar -xvf rte-antares-deps-centos7-Release-solver.tar.gz
 RUN rm -rf rte-antares-deps-centos7-Release-solver.tar.gz
