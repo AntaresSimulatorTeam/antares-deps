@@ -22,7 +22,7 @@ jobs:
     - name: Docker file push
       uses: elgohr/Publish-Docker-Github-Action@master
       env:
-        antares-deps-version: 2.0.0-rc2
+        ANTARES_DEPS_VERSION: 2.0.0-rc2
       with:
         name: antaresrte/rte-antares
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -31,5 +31,5 @@ jobs:
         dockerfile: ${{ matrix.container }}
         cache: true
         tags: ${{ matrix.container }}
-        buildargs: antares-deps-version
+        buildargs: ANTARES_DEPS_VERSION
         
