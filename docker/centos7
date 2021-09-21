@@ -23,6 +23,7 @@ RUN yum install -y python3-pip &&\
     pip3 install pyinstaller pyyaml pytest numpy touch pytest-cov mkdocs mkdocs-material
 
 # Download and extract pre-compiled libraries
+RUN echo https://github.com/AntaresSimulatorTeam/antares-deps/releases/download/v$antares-deps-version/rte-antares-deps-ubuntu-20.04-Release-solver.tar.gz
 RUN wget https://github.com/AntaresSimulatorTeam/antares-deps/releases/download/v$antares-deps-version/rte-antares-deps-centos7-Release-solver.tar.gz
 RUN tar -xvf rte-antares-deps-centos7-Release-solver.tar.gz
 RUN rm -rf rte-antares-deps-centos7-Release-solver.tar.gz
