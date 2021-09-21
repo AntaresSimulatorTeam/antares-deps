@@ -15,7 +15,7 @@ RUN yum install -y git redhat-lsb-core gcc gcc-c++ make \
 
 # Install xpansion requirements
 RUN yum install -y centos-release-scl scl-utils jsoncpp-devel gtest-devel &&\
-    yum install -y boost-openmpi-devel doxygen graphviz boost-program-options cmake3 devtoolset-7 environment-modules rpm-build zlib-devel
+    yum install -y openmpi-devel boost-openmpi-devel doxygen graphviz boost-program-options cmake3 devtoolset-7 environment-modules rpm-build zlib-devel
     
 # Add python and pip installation for antares-xpansion
 RUN yum install -y python3-pip &&\
@@ -23,7 +23,6 @@ RUN yum install -y python3-pip &&\
     pip3 install pyinstaller pyyaml pytest numpy touch pytest-cov mkdocs mkdocs-material
 
 # Download and extract pre-compiled libraries
-RUN echo https://github.com/AntaresSimulatorTeam/antares-deps/releases/download/v$ANTARES_DEPS_VERSION/rte-antares-deps-ubuntu-20.04-Release-solver.tar.gz
 RUN wget https://github.com/AntaresSimulatorTeam/antares-deps/releases/download/v$ANTARES_DEPS_VERSION/rte-antares-deps-centos7-Release-solver.tar.gz
 RUN tar -xvf rte-antares-deps-centos7-Release-solver.tar.gz
 RUN rm -rf rte-antares-deps-centos7-Release-solver.tar.gz

@@ -23,13 +23,12 @@ RUN git clone https://github.com/google/googletest.git --single-branch &&\
     rm -rf googletest &&\
     apt-get install -y libjsoncpp-dev libgtest-dev libboost-mpi-dev libboost-program-options-dev
     
-# Add python and pip installation for antares-xpansion : TODO use requirements.txt file to indicate requirements
+# Add python and pip installation for antares-xpansion
 RUN apt-get install -y python3-pip &&\
     python3 -m pip install --upgrade pip &&\
     pip3 install pyinstaller pyyaml pytest numpy touch pytest-cov mkdocs mkdocs-material
 
 # Download and extract pre-compiled libraries
-RUN echo https://github.com/AntaresSimulatorTeam/antares-deps/releases/download/v$ANTARES_DEPS_VERSION/rte-antares-deps-ubuntu-20.04-Release-solver.tar.gz
 RUN wget https://github.com/AntaresSimulatorTeam/antares-deps/releases/download/v$ANTARES_DEPS_VERSION/rte-antares-deps-ubuntu-20.04-Release-solver.tar.gz
 RUN tar -xvf rte-antares-deps-ubuntu-20.04-Release-solver.tar.gz
 RUN rm -rf rte-antares-deps-ubuntu-20.04-Release-solver.tar.gz
