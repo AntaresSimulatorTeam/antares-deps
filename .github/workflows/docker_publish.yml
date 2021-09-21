@@ -13,7 +13,6 @@ jobs:
     strategy:
       matrix:
         container:
-        - 'centos8'
         - 'ubuntu'
         - 'centos7'
         
