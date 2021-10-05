@@ -40,6 +40,7 @@ You can choose built librairies with these options :
 
 Libraries are compiled with static option (except for Sirius solver because OR-Tools use of shared version of Sirius solver).
 
+
 ## CMake configure option
 
 Here is a list of other available CMake configure option :
