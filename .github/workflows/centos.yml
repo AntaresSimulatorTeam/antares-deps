@@ -7,6 +7,7 @@ on:
       - feature/*
       - features/*
       - fix/*
+      - feature/use_git_2_centos7
 jobs:
 
   build:
