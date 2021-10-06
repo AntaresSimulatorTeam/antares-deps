@@ -39,6 +39,7 @@ jobs:
     - name: Install libraries
       run: |
            yum update -y
+           yum install -y https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.9-1.x86_64.rpm
            yum install -y git epel-release redhat-lsb-core autoconf automake libtool gtk2-devel gcc gcc-c++ make centos-release-scl scl-utils
            yum install -y cmake3 devtoolset-7
 
