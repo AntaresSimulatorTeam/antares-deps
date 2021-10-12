@@ -15,6 +15,11 @@ Theses libraries can be installed from a package manager (apt-get for debian, yu
 - solver libraries: Sirius Solver, OR-Tools
 Theses libraries can't be installed from a package manager. They must be compiled from sources.
 
+## [Git version](#git-version)
+Git version must be above 2.x for external dependencies build because `--ignore-whitespace` is not used by default and we have an issue with OR-Tools compilation of ZLib and application of patch on Windows (see https://github.com/google/or-tools/issues/1193).
+
+This is also needed for coin checkout. Without git 2.x there are changes after git clone and there is an issue with CMake `ExternalProject_Add`
+
 ## Choose built libraries
 You can choose built librairies with these options :
 
