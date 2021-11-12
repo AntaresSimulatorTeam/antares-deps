@@ -52,7 +52,7 @@ jobs:
 
     - name: Create archive
       run: |
-           tar cvfh  rte-antares-deps-centos7-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
+           tar cvfhz  rte-antares-deps-centos7-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
 
     - name: Upload .deb
       uses: actions/upload-release-asset@v1.0.2
