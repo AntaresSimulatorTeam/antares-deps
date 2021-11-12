@@ -27,6 +27,30 @@ ExternalProject_Add(
 					libs/headers
 					libs/predef
 					libs/test
+					libs/type_traits
+					libs/function
+					libs/smart_ptr
+					libs/preprocessor
+					libs/core
+					libs/throw_exception
+					libs/assert
+					libs/utility
+					libs/integer
+					libs/detail
+					libs/static_assert
+					libs/move
+					libs/type_index
+					libs/container_hash
+					libs/bind
+					libs/io
+					libs/iterator
+					libs/mpl
+					libs/algorithm
+					libs/exception
+					libs/numeric/conversion
+					libs/range
+					libs/system
+					libs/optional
 	
 	# We set the following commands content (even with an empty string) : otherwise a default non convenient command is run.
 	UPDATE_COMMAND		${booststrap_script}
