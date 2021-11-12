@@ -5,7 +5,7 @@
  - [OR-Tools](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) (fork from [RTE](https://github.com/rte-france/or-tools/tree/rte_dev_sirius) based on official OR-Tools github)
  - [wxWidgets](https://github.com/wxWidgets/wxWidgets)
  (Only for the complete Antares Simulator solution with GUI)
- - Boost libraries: test process filesystem regex dll (Only for unit tests)
+ - Boost libraries: test (Only for unit tests)
 
 This repository is used to compile these libraries from sources.
 
