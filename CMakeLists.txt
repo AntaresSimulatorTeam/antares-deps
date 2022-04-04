@@ -88,10 +88,6 @@ if(BUILD_ortools)
 endif()
 message(STATUS "Build glog: ${BUILD_glog}")
 
-CMAKE_DEPENDENT_OPTION(BUILD_Protobuf "Build the Protobuf dependency Library" OFF
-  "NOT BUILD_ortools" ON)
-message(STATUS "Build Protobuf: ${BUILD_Protobuf}")
-
 CMAKE_DEPENDENT_OPTION(BUILD_CoinUtils "Build the CoinUtils dependency Library" OFF
   "NOT BUILD_coin" ON)
 message(STATUS "Build CoinUtils: ${BUILD_CoinUtils}")

@@ -134,30 +134,6 @@ if(BUILD_glog)
     endif()
 endif()
 
-################
-##  Protobuf  ##
-################
-if(BUILD_Protobuf)
-
-    find_package(protobuf)
-
-    if(NOT protobuf_FOUND)
-
-        build_git_dependency(
-        NAME
-            Protobuf
-        REPOSITORY
-            "https://github.com/protocolbuffers/protobuf.git"
-        TAG
-            "v3.11.2"
-        CMAKE_ARGS
-            -Dprotobuf_MSVC_STATIC_RUNTIME:BOOL=OFF
-            -Dprotobuf_BUILD_TESTS:BOOL=OFF
-            "SOURCE_SUBDIR cmake"
-        )
-    endif()
-endif()
-
 #################
 ##  Coinutils  ##
 #################
@@ -273,7 +249,7 @@ if(BUILD_ortools)
         TAG
             ${ORTOOLS_BRANCH}
         CMAKE_ARGS
-            "${ORTOOLS_CMAKE_ARGS}  -DBUILD_DEPS=OFF -DUSE_COINOR=ON -DBUILD_PYTHON=OFF -DBUILD_TESTING=OFF -DBUILD_SAMPLES=OFF -DBUILD_EXAMPLES=OFF -DBUILD_FLATZINC=OFF"
+            "${ORTOOLS_CMAKE_ARGS}  -DBUILD_DEPS=ON -DUSE_COINOR=ON -DBUILD_PYTHON=OFF -DBUILD_TESTING=OFF -DBUILD_SAMPLES=OFF -DBUILD_EXAMPLES=OFF -DBUILD_FLATZINC=OFF"
         )
     endif()
 

@@ -37,7 +37,6 @@ You can choose built librairies with these options :
 |`BUILD_ortools`|Build OR-Tools | `OFF`|
 |`BUILD_ZLIB`|Build Zlib | `OFF` (`ON` if `BUILD_ortools`)|
 |`BUILD_absl`|Build absl | `OFF` (`ON` if `BUILD_ortools`)|
-|`BUILD_Protobuf`|Build Protobuf | `OFF` (`ON` if `BUILD_ortools`)|
 |`BUILD_gflags`|Build gflags | `OFF` (`ON` if `BUILD_not_system` or `BUILD_ortools` )|
 |`BUILD_glog`|Build glob | `OFF` (`ON` if `BUILD_not_system` or `BUILD_ortools`)|
 |`BUILD_wxWidgets`|Build wxWidgets | `OFF`|
