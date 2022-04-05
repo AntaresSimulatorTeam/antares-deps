@@ -34,7 +34,7 @@ jobs:
         
     - name: Configure and build
       run: |
-           cmake -B _build -S . -DBUILD_ortools=${{ matrix.build_ortools }}  -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+           cmake -B _build -S . -DBUILD_ortools=${{ matrix.build_ortools }}  -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }} || true
 
     - name: Archive upload
       uses: actions/upload-artifact@v2
