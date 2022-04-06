@@ -36,10 +36,10 @@ CMAKE_DEPENDENT_OPTION(BUILD_sirius "Build sirius solver dependency Library" OFF
 message(STATUS "Build sirius solver: ${BUILD_sirius}")
 
 if(NOT sirius_solver_REPO)
-    set(sirius_solver_REPO "https://github.com/AntaresSimulatorTeam/sirius-solver.git")
+    set(sirius_solver_REPO "https://github.com/rte-france/sirius-solver.git")
 endif()
 if(NOT sirius_solver_BRANCH)
-    set(sirius_solver_BRANCH "Antares_VCPKG")
+    set(sirius_solver_BRANCH "antares_integration")
 endif()
 
 
@@ -51,10 +51,10 @@ option(BUILD_ortools "Build OR-Tools dependency Library" OFF)
 message(STATUS "Build OR-Tools: ${BUILD_ortools}")
 
 if(NOT ORTOOLS_REPO)
-    set(ORTOOLS_REPO "https://github.com/AntaresSimulatorTeam/or-tools.git")
+    set(ORTOOLS_REPO "https://github.com/rte-france/or-tools.git")
 endif()
 if(NOT ORTOOLS_BRANCH)
-    set(ORTOOLS_BRANCH "rte_dev_sirius")
+    set(ORTOOLS_BRANCH "main")
 endif()
 if(NOT ORTOOLS_CMAKE_ARGS)
     set(ORTOOLS_CMAKE_ARGS "-DUSE_SIRIUS=ON")
