@@ -37,12 +37,12 @@ jobs:
         
     - name: Configure and build
       run: |
-           cmake -B _build -S . -DBUILD_ortools=${{ matrix.build_ortools }} -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }} || true
-
+           cmake -B _build -S . -DBUILD_ortools=${{ matrix.build_ortools }} -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+           
     - name: Create archive
       run: |
            Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
-
+           
     - name: Upload Archive
       uses: actions/upload-release-asset@v1.0.2
       with:
