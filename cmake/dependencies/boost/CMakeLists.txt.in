@@ -41,6 +41,7 @@ ExternalProject_Add(
 					libs/optional
 					libs/predef
 					libs/preprocessor
+					libs/program_options
 					libs/range
 					libs/smart_ptr
 					libs/static_assert
