@@ -16,14 +16,8 @@ jobs:
       matrix:
         os: [windows-latest]
         buildtype: [Release,Debug]
-        build_name: [all,solver,solver-no-ortools]
+        build_name: [solver-no-ortools]
         include:
-          - build_name: all
-            system_build: ON
-            build_ortools: ON
-          - build_name: solver
-            system_build: OFF
-            build_ortools: ON
           - build_name: solver-no-ortools
             system_build: OFF
             build_ortools: OFF
