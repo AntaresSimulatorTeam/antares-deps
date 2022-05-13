@@ -32,7 +32,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
         
-    - name: Git : enable long names
+    - name: Enable long names in git
       run: |
            git config --system core.longpaths true
 
