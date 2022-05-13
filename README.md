@@ -1,8 +1,8 @@
 # Antares dependencies build
 
  ANTARES Simulation and antaresXpansion depends on severals mandatory libraries.
- - [Sirius Solver](https://github.com/AntaresSimulatorTeam/sirius-solver/tree/Antares_VCPKG) (fork from [RTE](https://github.com/rte-france/sirius-solver/tree/Antares_VCPKG))
- - [OR-Tools](https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius) (fork from [RTE](https://github.com/rte-france/or-tools/tree/rte_dev_sirius) based on official OR-Tools github)
+ - [Sirius Solver](https://github.com/rte-france/sirius-solver)
+ - [OR-Tools](https://github.com/rte-france/or-tools)
  - [wxWidgets](https://github.com/wxWidgets/wxWidgets)
  (Only for the complete Antares Simulator solution with GUI)
  - Boost libraries: test (Only for unit tests)
@@ -53,10 +53,10 @@ Here is a list of other available CMake configure option :
 |`CMAKE_BUILD_TYPE` |Define build type. Available values are `Release` and `Debug`  | `Release`|
 |`DEPS_INSTALL_DIR`|Define libraries install directory| `<antares_deps_checkout_dir>/../rte-antares-deps-<build_type>`|
 |`USE_ORTOOLS_STABLE`| Use `stable` branch of OR-Tools github| `OFF`|
-|`ORTOOLS_REPO`| Define OR-Tools repository used| `https://github.com/AntaresSimulatorTeam/or-tools/tree/rte_dev_sirius`|
+|`ORTOOLS_REPO`| Define OR-Tools repository used| `https://github.com/rte-france/or-tools`|
 |`ORTOOLS_BRANCH`| Define OR-Tools branch used| `rte_dev_sirius`|
 |`ORTOOLS_CMAKE_ARGS`| Define additional cmake args for OR-Tools configuration| `-DUSE_SIRIUS=ON`|
-|`sirius_solver_REPO`| Define Sirius solver repository used| `https://github.com/AntaresSimulatorTeam/sirius-solver.git`|
+|`sirius_solver_REPO`| Define Sirius solver repository used| `https://github.com/rte-france/sirius-solver`|
 |`sirius_solver_BRANCH`| Define Sirius solver branch used| `Antares_VCPKG`|
 
 Note:
