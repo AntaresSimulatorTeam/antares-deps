@@ -14,10 +14,8 @@ jobs:
     strategy:
       matrix:
         buildtype: [Release,Debug]
-        build_name: [solver-no-ortools]
         include:
-          - build_name: solver-no-ortools
-            system_build: OFF
+          - system_build: OFF
             build_ortools: OFF
 
     runs-on: ubuntu-latest
@@ -46,12 +44,12 @@ jobs:
 
     - name: Create archive
       run: |
-           tar cvfhz  rte-antares-deps-centos7-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
+           tar cvfhz  rte-antares-deps-centos7-${{ matrix.buildtype }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
 
     - name: Upload .deb
       uses: actions/upload-release-asset@v1.0.2
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: rte-antares-deps-centos7-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz
-        asset_name: rte-antares-deps-centos7-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz
+        asset_path: rte-antares-deps-centos7-${{ matrix.buildtype }}.tar.gz
+        asset_name: rte-antares-deps-centos7-${{ matrix.buildtype }}.tar.gz
         asset_content_type: application/gzip

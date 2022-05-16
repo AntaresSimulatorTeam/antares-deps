@@ -16,10 +16,8 @@ jobs:
       matrix:
         os: [windows-latest]
         buildtype: [Release,Debug]
-        build_name: [solver-no-ortools]
         include:
-          - build_name: solver-no-ortools
-            system_build: OFF
+          - system_build: OFF
             build_ortools: OFF
 
     steps:
@@ -35,14 +33,14 @@ jobs:
            
     - name: Create archive
       run: |
-           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
+           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.zip
            
     - name: Upload Archive
       uses: actions/upload-release-asset@v1.0.2
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
-        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
+        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.zip
+        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.zip
         asset_content_type: application/zip
 
     

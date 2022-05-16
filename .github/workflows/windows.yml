@@ -17,10 +17,8 @@ jobs:
       matrix:
         os: [windows-latest]
         buildtype: [Release,Debug]
-        build_name: [solver-no-ortools]
         include:
-          - build_name: solver-no-ortools
-            system_build: OFF
+          - system_build: OFF
             build_ortools: OFF
 
     steps:
@@ -33,6 +31,6 @@ jobs:
     - name: Archive upload
       uses: actions/upload-artifact@v2
       with:
-        name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}
+        name: antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}
         path: |
           rte-antares-deps-${{ matrix.buildtype }}
