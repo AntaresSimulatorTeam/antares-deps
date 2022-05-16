@@ -34,11 +34,8 @@ You can choose built librairies with these options :
 |`BUILD_Clp`|Build Clp | `OFF` (`ON` if `BUILD_coin`)|
 |`BUILD_Cgl`|Build Cgl | `OFF` (`ON` if `BUILD_coin`)|
 |`BUILD_Cbc`|Build Cbc | `OFF` (`ON` if `BUILD_coin`)|
-|`BUILD_ortools`|Build OR-Tools | `OFF`|
-|`BUILD_ZLIB`|Build Zlib | `OFF` (`ON` if `BUILD_ortools`)|
-|`BUILD_absl`|Build absl | `OFF` (`ON` if `BUILD_ortools`)|
-|`BUILD_gflags`|Build gflags | `OFF` (`ON` if `BUILD_not_system` or `BUILD_ortools` )|
-|`BUILD_glog`|Build glob | `OFF` (`ON` if `BUILD_not_system` or `BUILD_ortools`)|
+|`BUILD_gflags`|Build gflags | `OFF` (`ON` if `BUILD_not_system`)|
+|`BUILD_glog`|Build glob | `OFF` (`ON` if `BUILD_not_system`)|
 |`BUILD_wxWidgets`|Build wxWidgets | `OFF`|
 |`BUILD_BOOST`|Build Boost | `OFF`|
 
@@ -52,10 +49,6 @@ Here is a list of other available CMake configure option :
 |:-------|-------|-------|
 |`CMAKE_BUILD_TYPE` |Define build type. Available values are `Release` and `Debug`  | `Release`|
 |`DEPS_INSTALL_DIR`|Define libraries install directory| `<antares_deps_checkout_dir>/../rte-antares-deps-<build_type>`|
-|`USE_ORTOOLS_STABLE`| Use `stable` branch of OR-Tools github| `OFF`|
-|`ORTOOLS_REPO`| Define OR-Tools repository used| `https://github.com/rte-france/or-tools`|
-|`ORTOOLS_BRANCH`| Define OR-Tools branch used| `rte_dev_sirius`|
-|`ORTOOLS_CMAKE_ARGS`| Define additional cmake args for OR-Tools configuration| `-DUSE_SIRIUS=ON`|
 |`sirius_solver_REPO`| Define Sirius solver repository used| `https://github.com/rte-france/sirius-solver`|
 |`sirius_solver_BRANCH`| Define Sirius solver branch used| `Antares_VCPKG`|
 

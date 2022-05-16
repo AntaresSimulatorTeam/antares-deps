@@ -232,31 +232,6 @@ if(BUILD_Cbc)
 
 endif()
 
-#####################
-##  OR-TOOLS       ##
-#####################
-if(BUILD_ortools)
-
-    #Check if ortools is already available
-    find_package(ortools)
-
-    if(NOT ortools_FOUND)
-        build_git_dependency(
-        NAME
-            or-tools
-        REPOSITORY
-            ${ORTOOLS_REPO}
-        TAG
-            ${ORTOOLS_BRANCH}
-        CMAKE_ARGS
-            "${ORTOOLS_CMAKE_ARGS}  -DBUILD_DEPS=ON -DUSE_COINOR=ON -DBUILD_PYTHON=OFF -DBUILD_TESTING=OFF -DBUILD_SAMPLES=OFF -DBUILD_EXAMPLES=OFF -DBUILD_FLATZINC=OFF"
-        INSOURCE_BUILD
-            "OFF"
-        )
-    endif()
-
-endif()
-
 if(BUILD_BOOST)
     message("")
     message("**********************************************************************")
