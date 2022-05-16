@@ -2,7 +2,6 @@
 
  ANTARES Simulation and antaresXpansion depends on severals mandatory libraries.
  - [Sirius Solver](https://github.com/rte-france/sirius-solver)
- - [OR-Tools](https://github.com/rte-france/or-tools)
  - [wxWidgets](https://github.com/wxWidgets/wxWidgets)
  (Only for the complete Antares Simulator solution with GUI)
  - Boost libraries: test (Only for unit tests)
@@ -12,11 +11,8 @@ This repository is used to compile these libraries from sources.
 We can distinguish 2 kind of libraries:
 - system libraries: wxWidgets, Boost
 Theses libraries can be installed from a package manager (apt-get for debian, yum for centos and vcpkg for windows)
-- solver libraries: Sirius Solver, OR-Tools
+- solver libraries: Sirius Solver
 Theses libraries can't be installed from a package manager. They must be compiled from sources.
-
-## [Git version](#git-version)
-Git version must be above 2.x for external dependencies build because `--ignore-whitespace` is not used by default and we have an issue with OR-Tools compilation of ZLib and application of patch on Windows (see https://github.com/google/or-tools/issues/1193).
 
 This is also needed for coin checkout. Without git 2.x there are changes after git clone and there is an issue with CMake `ExternalProject_Add`
 
@@ -39,8 +35,6 @@ You can choose built librairies with these options :
 |`BUILD_wxWidgets`|Build wxWidgets | `OFF`|
 |`BUILD_BOOST`|Build Boost | `OFF`|
 
-Libraries are compiled with static option (except for Sirius solver because OR-Tools use of shared version of Sirius solver).
-
 ## CMake configure option
 
 Here is a list of other available CMake configure option :
@@ -56,7 +50,7 @@ Note:
 > `DEPS_INSTALL_DIR` is added to `CMAKE_PREFIX_PATH`
 
 Note:
-> OR-Tools and Sirius solver configuration will be written in repository-config.txt
+> Sirius solver configuration will be written in repository-config.txt
 ## Build
 Build is done at CMake configure step :
 
