@@ -26,10 +26,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
         
-    - name: Enable long names in git
-      run: |
-           git config --system core.longpaths true
-
     - name: Configure and build
       run: |
            cmake -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
