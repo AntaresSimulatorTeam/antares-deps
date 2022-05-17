@@ -16,7 +16,6 @@ jobs:
         buildtype: [Release,Debug]
         include:
           - system_build: OFF
-            build_ortools: OFF
 
     runs-on: ubuntu-latest
     container: 'centos:7'

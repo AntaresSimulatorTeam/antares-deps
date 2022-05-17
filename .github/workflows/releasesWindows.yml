@@ -18,7 +18,6 @@ jobs:
         buildtype: [Release,Debug]
         include:
           - system_build: OFF
-            build_ortools: OFF
 
     steps:
     - uses: actions/checkout@v2 
