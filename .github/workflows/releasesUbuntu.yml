@@ -16,17 +16,8 @@ jobs:
       matrix:
         os: [ubuntu-20.04]
         buildtype: [Release,Debug]
-        build_name: [all,solver,solver-no-ortools]
         include:
-          - build_name: all
-            system_build: ON
-            build_ortools: ON
-          - build_name: solver
-            system_build: OFF
-            build_ortools: ON
-          - build_name: solver-no-ortools
-            system_build: OFF
-            build_ortools: OFF
+          - system_build: OFF
 
     steps:
     - uses: actions/checkout@v2 
@@ -42,17 +33,17 @@ jobs:
 
     - name: Configure and build
       run: |
-           cmake -B _build -S . -DBUILD_ortools=${{ matrix.build_ortools }} -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+           cmake -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
            
     - name: Create archive
       run: |
-           tar cvfhz  rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
+           tar cvfhz  rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
            
     - name: Upload .deb
       uses: actions/upload-release-asset@v1.0.2
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz
-        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.tar.gz
+        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.tar.gz
+        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.tar.gz
         asset_content_type: application/gzip
         

@@ -52,45 +52,6 @@ if(BUILD_sirius)
 
 endif()
 
-############
-##  ZLIB  ##
-############
-if(BUILD_ZLIB)
-
-    find_package(ZLIB)
-
-    if(NOT ZLIB_FOUND)
-        build_git_dependency(
-        NAME
-            ZLIB
-        REPOSITORY
-            "https://github.com/madler/ZLIB.git"
-        TAG
-            "v1.2.11"
-        )
-    endif()
-endif()
-
-##################
-##  ABSEIL-CPP  ##
-##################
-if(BUILD_absl)
-
-    find_package(absl)
-
-    if(NOT absl_FOUND)
-        build_git_dependency(
-        NAME
-            abseil-cpp
-        REPOSITORY
-            "https://github.com/abseil/abseil-cpp.git"
-        TAG
-            "8ba96a8"
-        )
-    endif()
-
-endif()
-
 ##############
 ##  GFLAGS  ##
 ##############
@@ -227,31 +188,6 @@ if(BUILD_Cbc)
             "https://github.com/Mizux/Cbc.git"
         TAG
             "stable/2.10"
-        )
-    endif()
-
-endif()
-
-#####################
-##  OR-TOOLS       ##
-#####################
-if(BUILD_ortools)
-
-    #Check if ortools is already available
-    find_package(ortools)
-
-    if(NOT ortools_FOUND)
-        build_git_dependency(
-        NAME
-            or-tools
-        REPOSITORY
-            ${ORTOOLS_REPO}
-        TAG
-            ${ORTOOLS_BRANCH}
-        CMAKE_ARGS
-            "${ORTOOLS_CMAKE_ARGS}  -DBUILD_DEPS=ON -DUSE_COINOR=ON -DBUILD_PYTHON=OFF -DBUILD_TESTING=OFF -DBUILD_SAMPLES=OFF -DBUILD_EXAMPLES=OFF -DBUILD_FLATZINC=OFF"
-        INSOURCE_BUILD
-            "OFF"
         )
     endif()
 
