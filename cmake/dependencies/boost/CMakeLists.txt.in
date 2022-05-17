@@ -23,6 +23,7 @@ ExternalProject_Add(
 	GIT_TAG "boost-1.79.0"
 	GIT_SUBMODULES	
 					libs/algorithm
+					libs/any
 					libs/assert
 					libs/bind
 					libs/config
@@ -35,6 +36,7 @@ ExternalProject_Add(
 					libs/integer
 					libs/io
 					libs/iterator
+					libs/lexical_cast
 					libs/move
 					libs/mpl
 					libs/numeric/conversion
@@ -48,6 +50,7 @@ ExternalProject_Add(
 					libs/system
 					libs/test
 					libs/throw_exception
+					libs/tokenizer
 					libs/type_index
 					libs/type_traits
 					libs/utility
