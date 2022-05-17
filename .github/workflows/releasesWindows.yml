@@ -16,17 +16,8 @@ jobs:
       matrix:
         os: [windows-latest]
         buildtype: [Release,Debug]
-        build_name: [all,solver,solver-no-ortools]
         include:
-          - build_name: all
-            system_build: ON
-            build_ortools: ON
-          - build_name: solver
-            system_build: OFF
-            build_ortools: ON
-          - build_name: solver-no-ortools
-            system_build: OFF
-            build_ortools: OFF
+          - system_build: OFF
 
     steps:
     - uses: actions/checkout@v2 
@@ -34,25 +25,21 @@ jobs:
     - name: Get release
       id: get_release
       uses: bruceadams/get-release@v1.2.0    
-
-    - name: Enable long names in git
-      run: |
-           git config --system core.longpaths true
         
     - name: Configure and build
       run: |
-           cmake -B _build -S . -DBUILD_ortools=${{ matrix.build_ortools }} -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+           cmake -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
            
     - name: Create archive
       run: |
-           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
+           Compress-Archive -Path rte-antares-deps-${{ matrix.buildtype }} -DestinationPath rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.zip
            
     - name: Upload Archive
       uses: actions/upload-release-asset@v1.0.2
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
-        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}-${{ matrix.build_name }}.zip
+        asset_path: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.zip
+        asset_name: rte-antares-deps-${{ matrix.os }}-${{ matrix.buildtype }}.zip
         asset_content_type: application/zip
 
     

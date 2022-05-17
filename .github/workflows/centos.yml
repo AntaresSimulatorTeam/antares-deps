@@ -15,17 +15,8 @@ jobs:
     strategy:
       matrix:
         buildtype: [Release,Debug]
-        build_name: [all,solver,solver-no-ortools]
         include:
-          - build_name: all
-            system_build: ON
-            build_ortools: ON
-          - build_name: solver
-            system_build: OFF
-            build_ortools: ON
-          - build_name: solver-no-ortools
-            system_build: OFF
-            build_ortools: OFF
+          - system_build: OFF
             
     runs-on: ubuntu-latest
     container: 'centos:7'
@@ -45,11 +36,11 @@ jobs:
            source /opt/rh/devtoolset-7/enable
            #git 2.x must be enabled for Coin compilation with CMake ExternalProject_Add
            source /opt/rh/rh-git227/enable
-           cmake3 -B _build -S . -DBUILD_ortools=${{ matrix.build_ortools }} -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+           cmake3 -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
 
     - name: Archive upload
       uses: actions/upload-artifact@v2
       with:
-        name: antares-deps-centos7-${{ matrix.buildtype }}-${{ matrix.build_name }}
+        name: antares-deps-centos7-${{ matrix.buildtype }}
         path: |
           rte-antares-deps-${{ matrix.buildtype }}

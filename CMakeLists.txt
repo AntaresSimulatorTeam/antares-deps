@@ -19,9 +19,6 @@ include("cmake/utils.cmake")
 option(BUILD_ALL "Build all dependencies" OFF)
 message(STATUS "Build all dependencies: ${BUILD_ALL}")
 
-option(USE_ORTOOLS_STABLE "Use OR-Tools stable instead of RTE OR-Tools branch with Sirius support" OFF)
-message(STATUS "Use OR-Tools stable instead of RTE OR-Tools branch with Sirius support: ${USE_ORTOOLS_STABLE}")
-
 # IF BUILD_DEPS=ON THEN Force all BUILD_*=ON
 include(CMakeDependentOption)
 
@@ -47,45 +44,12 @@ CMAKE_DEPENDENT_OPTION(BUILD_coin "Build all COIN dependency Library" OFF
 		"NOT BUILD_not_system" ON)
 message(STATUS "Build Coin: ${BUILD_coin}")
 
-option(BUILD_ortools "Build OR-Tools dependency Library" OFF)
-message(STATUS "Build OR-Tools: ${BUILD_ortools}")
-
-if(NOT ORTOOLS_REPO)
-    set(ORTOOLS_REPO "https://github.com/rte-france/or-tools.git")
-endif()
-if(NOT ORTOOLS_BRANCH)
-    set(ORTOOLS_BRANCH "main")
-endif()
-if(NOT ORTOOLS_CMAKE_ARGS)
-    set(ORTOOLS_CMAKE_ARGS "-DUSE_SIRIUS=ON")
-endif()
-
-if (USE_ORTOOLS_STABLE)
-    set(ORTOOLS_REPO "https://github.com/google/or-tools.git")
-    set(ORTOOLS_BRANCH "stable")
-    set(ORTOOLS_CMAKE_ARGS "")
-endif()
-
-CMAKE_DEPENDENT_OPTION(BUILD_ZLIB "Build the ZLIB dependency Library" OFF
-  "NOT BUILD_ortools" ON)
-message(STATUS "Build ZLIB: ${BUILD_ZLIB}")
-
-CMAKE_DEPENDENT_OPTION(BUILD_absl "Build the abseil-cpp dependency Library" OFF
-  "NOT BUILD_ortools" ON)
-message(STATUS "Build abseil-cpp: ${BUILD_absl}")
-
 CMAKE_DEPENDENT_OPTION(BUILD_gflags "Build the gflags dependency Library" OFF
   "NOT BUILD_not_system" ON)
-if(BUILD_ortools)
-	SET(BUILD_gflags ON)
-endif()
 message(STATUS "Build gflags: ${BUILD_gflags}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_glog "Build the glog dependency Library" OFF
   "NOT BUILD_not_system" ON)
-if(BUILD_ortools)
-	SET(BUILD_glog ON)
-endif()
 message(STATUS "Build glog: ${BUILD_glog}")
 
 CMAKE_DEPENDENT_OPTION(BUILD_CoinUtils "Build the CoinUtils dependency Library" OFF
