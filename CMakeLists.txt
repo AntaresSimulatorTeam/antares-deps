@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
-# conflict with antares-xpansion redefining CXX compiler
-#project(antares-deps CXX)
+
+project(antares-deps CXX)
 project(antares-deps)
 set(DEFAULT_BUILD_TYPE Release)
 
