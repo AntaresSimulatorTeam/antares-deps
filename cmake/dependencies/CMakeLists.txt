@@ -4,9 +4,8 @@
 find_package(minizip  )
 if(NOT minizip)
     set(REPOSITORY "https://github.com/zlib-ng/minizip-ng.git")
-        # set(TAG "${MINIZIP_TAG}")
         set(TAG "3.0.6")
-        set(CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${DEPS_INSTALL_DIR} -DMZ_LZMA=OFF -DMZ_ZSTD=OFF -DMZ_BZIP2=OFF -DMZ_PKCRYPT=OFF -DMZ_WZAES=OFF -DMZ_OPENSSL=OFF -DMZ_ICONV=OFF")
+        set(CMAKE_ARGS_MZ "-DCMAKE_INSTALL_PREFIX=${DEPS_INSTALL_DIR} -DMZ_LZMA=OFF -DMZ_ZSTD=OFF -DMZ_BZIP2=OFF -DMZ_PKCRYPT=OFF -DMZ_WZAES=OFF -DMZ_OPENSSL=OFF -DMZ_ICONV=OFF")
 
         build_git_dependency(
             NAME
@@ -16,7 +15,7 @@ if(NOT minizip)
             TAG
             ${TAG}
             CMAKE_ARGS
-            "${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
+            "${CMAKE_ARGS_MZ} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
         )
 
 endif()
