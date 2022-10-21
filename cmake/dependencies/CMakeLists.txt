@@ -129,7 +129,7 @@ if(BUILD_CoinUtils)
         REPOSITORY
             "https://github.com/Mizux/CoinUtils.git"
         TAG
-                "cmake/2.11.6 "
+            "stable/2.11"
         )
     endif()
 endif()
