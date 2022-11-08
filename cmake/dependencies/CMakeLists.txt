@@ -95,7 +95,14 @@ endif()
 ##  GFLAGS  ##
 ##############
 if(BUILD_gflags)
-    find_package(gflags)
+    # On Windows, when configuring "glog" or "gflags", a path to <package>-config.cmake is stored
+    # under the form of a registry key (HKEY_CURRENT_USER\Software\Kitware\CMake\Packages\<PackageName>).
+    # A a consequence, when deploying/installing another version of antares-deps, supposed to be 
+    # completely independent, an already compiled package ("glog" or "gflags") is found by the 
+    # find_package(<PackageName>) in the Windows registry.
+    # As we can't make packages "glog" or "gflags" not to store paths in the Windows' registry, 
+    # we tell find_package(<PackageName>) not to search in registry, by using NO_CMAKE_PACKAGE_REGISTRY option.
+    find_package(gflags NO_CMAKE_PACKAGE_REGISTRY)
 
     if(NOT gflags_FOUND)
         build_git_dependency(
@@ -118,7 +125,7 @@ endif()
 ##  GLOG  ##
 ############
 if(BUILD_glog)
-    find_package(glog)
+    find_package(glog NO_CMAKE_PACKAGE_REGISTRY)
 
     if(NOT glog_FOUND)
         build_git_dependency(
