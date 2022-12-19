@@ -35,8 +35,8 @@ message(STATUS "Build sirius solver: ${BUILD_sirius}")
 if(NOT sirius_solver_REPO)
     set(sirius_solver_REPO "https://github.com/rte-france/sirius-solver.git")
 endif()
-if(NOT sirius_solver_BRANCH)
-    set(sirius_solver_BRANCH "antares_integration")
+if(NOT sirius_solver_TAG)
+    set(sirius_solver_TAG "antares-integration-v1.3")
 endif()
 
 
