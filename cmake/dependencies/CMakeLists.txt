@@ -193,7 +193,7 @@ if(BUILD_Cbc)
 
 endif()
 
-if(BUILD_BOOST)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR BUILD_BOOST)
     message("")
     message("**********************************************************************")
     message("** Download, build and installation of Boost ...")
