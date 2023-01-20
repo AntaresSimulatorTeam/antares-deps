@@ -65,7 +65,7 @@ if(BUILD_sirius)
         REPOSITORY
             ${sirius_solver_REPO}
         TAG
-            ${sirius_solver_BRANCH}
+            ${sirius_solver_TAG}
         SOURCE_SUBDIR
             "src"
         )

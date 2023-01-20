@@ -44,7 +44,7 @@ Here is a list of other available CMake configure option :
 |`CMAKE_BUILD_TYPE` |Define build type. Available values are `Release` and `Debug`  | `Release`|
 |`DEPS_INSTALL_DIR`|Define libraries install directory| `<antares_deps_checkout_dir>/../rte-antares-deps-<build_type>`|
 |`sirius_solver_REPO`| Define Sirius solver repository used| `https://github.com/rte-france/sirius-solver`|
-|`sirius_solver_BRANCH`| Define Sirius solver branch used| `antares_integration`|
+|`sirius_solver_TAG`| Define Sirius solver tag used| `antares_integration-v1.3`|
 
 Note:
 > `DEPS_INSTALL_DIR` is added to `CMAKE_PREFIX_PATH`
