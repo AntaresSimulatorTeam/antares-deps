@@ -28,12 +28,12 @@ jobs:
         run: |
           dnf update -y
           dnf install -y git epel-release redhat-lsb-core autoconf automake libtool gtk2-devel gcc gcc-c++ make scl-utils
-          dnf install -y cmake3 devtoolset-7
+          dnf install -y cmake3 gcc-toolset-9-toolchain
           dnf install -y rh-git227-git
 
       - name: Configure and build
         run: |
-          source /opt/rh/devtoolset-7/enable
+          source /opt/rh/devtoolset-9/enable
           #git 2.x must be enabled for Coin compilation with CMake ExternalProject_Add
           source /opt/rh/rh-git227/enable
           cmake3 -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
