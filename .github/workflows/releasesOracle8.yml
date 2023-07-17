@@ -30,7 +30,7 @@ jobs:
       - name: Install libraries
         run: |
           dnf update -y
-          dnf install -y git epel-release redhat-lsb-core autoconf automake libtool gtk2-devel gcc gcc-c++ make oracle-release-scl scl-utils
+          dnf install -y git epel-release redhat-lsb-core autoconf automake libtool gtk2-devel gcc gcc-c++ make scl-utils
           dnf install -y cmake3 devtoolset-7
           dnf install -y rh-git227-git
 
