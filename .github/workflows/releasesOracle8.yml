@@ -18,7 +18,7 @@ jobs:
           - system_build: OFF
 
     runs-on: ubuntu-latest
-    container: 'oracle:8'
+    container: 'oraclelinux:8'
 
     steps:
       - uses: actions/checkout@v2
