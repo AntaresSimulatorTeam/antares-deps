@@ -1,0 +1,54 @@
+name: Release asset upload (Oracle8)
+
+on:
+  release:
+    types: [created]
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        buildtype: [Release,Debug]
+        include:
+          - system_build: OFF
+
+    runs-on: ubuntu-latest
+    container: 'oracle:8'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get release
+        id: get_release
+        uses: bruceadams/get-release@v1.2.0
+
+      - name: Install libraries
+        run: |
+          dnf update -y
+          dnf install -y git epel-release redhat-lsb-core autoconf automake libtool gtk2-devel gcc gcc-c++ make oracle-release-scl scl-utils
+          dnf install -y cmake3 devtoolset-7
+          dnf install -y rh-git227-git
+
+      - name: Configure and build
+        run: |
+          source /opt/rh/devtoolset-7/enable
+          #git 2.x must be enabled for Coin compilation with CMake ExternalProject_Add
+          source /opt/rh/rh-git227/enable
+          cmake3 -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+
+      - name: Create archive
+        run: |
+          tar cvfhz  rte-antares-deps-oracle8-${{ matrix.buildtype }}.tar.gz rte-antares-deps-${{ matrix.buildtype }}
+
+      - name: Upload .deb
+        uses: actions/upload-release-asset@v1.0.2
+        with:
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
+          asset_path: rte-antares-deps-oracle8-${{ matrix.buildtype }}.tar.gz
+          asset_name: rte-antares-deps-oracle8-${{ matrix.buildtype }}.tar.gz
+          asset_content_type: application/gzip
