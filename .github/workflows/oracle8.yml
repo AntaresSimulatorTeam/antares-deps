@@ -1,0 +1,44 @@
+name: Oracle 8 CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+      - features/*
+      - fix/*
+jobs:
+
+  build:
+
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    strategy:
+      matrix:
+        buildtype: [Release,Debug]
+        include:
+          - system_build: OFF
+    
+    runs-on: ubuntu-latest
+    container: 'oraclelinux:8'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install libraries
+        run: |
+          dnf update -y
+          dnf install -y git epel-release redhat-lsb-core autoconf automake libtool gtk2-devel gcc gcc-c++ make scl-utils
+          dnf install -y cmake3 gcc-toolset-9-toolchain
+
+      - name: Configure and build
+        run: |
+          source /opt/rh/gcc-toolset-9/enable
+          #git 2.x must be enabled for Coin compilation with CMake ExternalProject_Add
+          cmake3 -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+
+      - name: Archive upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: antares-deps-oracle8-${{ matrix.buildtype }}
+          path: |
+            rte-antares-deps-${{ matrix.buildtype }}
