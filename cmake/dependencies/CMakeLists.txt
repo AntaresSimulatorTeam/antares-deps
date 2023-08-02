@@ -1,3 +1,22 @@
+###########################
+##  2018 <= tbb <= 2020  ##
+###########################
+find_package(tbb 2018...2020.2)
+if(NOT tbb_FOUND)
+    set(REPOSITORY "https://github.com/wjakob/tbb.git")
+        set(CMAKE_ARGS_MZ "-DCMAKE_INSTALL_PREFIX=${DEPS_INSTALL_DIR} ")
+
+        build_git_dependency(
+            NAME
+            tbb
+            REPOSITORY
+            ${REPOSITORY}
+            CMAKE_ARGS
+            "${CMAKE_ARGS_MZ} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
+        )
+
+endif()
+
 #####################
 ##  minizip-ng  ##
 #####################
