@@ -60,6 +60,6 @@ ExternalProject_Add(
 	# We set the following commands content (even with an empty string) : otherwise a default non convenient command is run.
 	UPDATE_COMMAND		${booststrap_script}
 	CONFIGURE_COMMAND	""
-	BUILD_COMMAND		${b2} address-model=64 architecture=x86 link=static --prefix=@DEPS_INSTALL_DIR@ install
+	BUILD_COMMAND		${b2} address-model=64 architecture=x86 link=static,shared --prefix=@DEPS_INSTALL_DIR@ install
 	INSTALL_COMMAND		""
 )
