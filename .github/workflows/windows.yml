@@ -26,7 +26,7 @@ jobs:
     - name: Configure and build
       shell: bash
       run: |
-        VERBOSE=1 cmake -B _build -S . -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
+        VERBOSE=1 cmake -B _build -S . -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} -DBUILD_not_system=ON -DBUILD_system=${{ matrix.system_build }} -DDEPS_INSTALL_DIR=rte-antares-deps-${{ matrix.buildtype }}
 
     - name: Create archive
       run: |
