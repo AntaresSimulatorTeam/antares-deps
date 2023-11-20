@@ -1,24 +1,3 @@
-#####################
-##  minizip-ng  ##
-#####################
-find_package(minizip-ng)
-if(NOT minizip-ng_FOUND)
-    set(REPOSITORY "https://github.com/zlib-ng/minizip-ng.git")
-        set(TAG "3.0.6")
-        set(CMAKE_ARGS_MZ "-DCMAKE_INSTALL_PREFIX=${DEPS_INSTALL_DIR} -DMZ_LZMA=OFF -DMZ_ZSTD=OFF -DMZ_BZIP2=OFF -DMZ_PKCRYPT=OFF -DMZ_WZAES=OFF -DMZ_OPENSSL=OFF -DMZ_ICONV=OFF -DMZ_COMPAT=OFF")
-
-        build_git_dependency(
-            NAME
-            minizip-ng
-            REPOSITORY
-            ${REPOSITORY}
-            TAG
-            ${TAG}
-            CMAKE_ARGS
-            "${CMAKE_ARGS_MZ} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
-        )
-
-endif()
 ##############
 ##  wxWidgets  ##
 ##############
