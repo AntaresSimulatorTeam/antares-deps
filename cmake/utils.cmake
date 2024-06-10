@@ -80,6 +80,7 @@ function(build_git_dependency)
     ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt.in
     ${CMAKE_CURRENT_BINARY_DIR}/${GIT_DEP_NAME}/CMakeLists.txt @ONLY)
 
+  message(STATUS "${CMAKE_COMMAND} -H. -Bproject_build -G ${CMAKE_GENERATOR}")
   execute_process(
     COMMAND ${CMAKE_COMMAND} -H. -Bproject_build -G "${CMAKE_GENERATOR}"
     RESULT_VARIABLE result
