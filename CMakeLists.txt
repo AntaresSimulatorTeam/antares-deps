@@ -98,3 +98,5 @@ configure_file(repository-config.txt.cmake ${DEPS_INSTALL_DIR}/repository-config
 
 # Build Needed dependencies
 add_subdirectory(cmake/dependencies)
+
+install(DIRECTORY ${DEPS_INSTALL_DIR}/ DESTINATION ${CMAKE_INSTALL_PREFIX} FILES_MATCHING PATTERN "*")
