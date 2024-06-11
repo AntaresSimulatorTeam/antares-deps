@@ -29,18 +29,6 @@ CMAKE_DEPENDENT_OPTION(BUILD_system "Build dependencies available on system pack
 CMAKE_DEPENDENT_OPTION(BUILD_not_system "Build dependencies not available on system package manager" ON
 		"NOT BUILD_ALL" ON)
 
-CMAKE_DEPENDENT_OPTION(BUILD_sirius "Build sirius solver dependency Library" OFF
-		"NOT BUILD_not_system" ON)
-message(STATUS "Build sirius solver: ${BUILD_sirius}")
-
-if(NOT sirius_solver_REPO)
-    set(sirius_solver_REPO "https://github.com/rte-france/sirius-solver.git")
-endif()
-if(NOT sirius_solver_TAG)
-    set(sirius_solver_TAG "antares-integration-v1.4")
-endif()
-
-
 CMAKE_DEPENDENT_OPTION(BUILD_coin "Build all COIN dependency Library" OFF
 		"NOT BUILD_not_system" ON)
 message(STATUS "Build Coin: ${BUILD_coin}")

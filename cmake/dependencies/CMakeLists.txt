@@ -29,29 +29,6 @@ if(BUILD_wxWidgets)
 
 endif()
 
-#####################
-##  Sirius solver  ##
-#####################
-if(BUILD_sirius)
-
-    #Check if sirius is already available
-    find_package(sirius_solver)
-
-    if (NOT sirius_solver_FOUND)
-        build_git_dependency(
-        NAME
-            sirius
-        REPOSITORY
-            ${sirius_solver_REPO}
-        TAG
-            ${sirius_solver_TAG}
-        SOURCE_SUBDIR
-            "src"
-        )
-    endif()
-
-endif()
-
 ##############
 ##  GFLAGS  ##
 ##############
