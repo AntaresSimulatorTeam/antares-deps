@@ -36,7 +36,7 @@ if(NOT sirius_solver_REPO)
     set(sirius_solver_REPO "https://github.com/rte-france/sirius-solver.git")
 endif()
 if(NOT sirius_solver_TAG)
-    set(sirius_solver_TAG "antares-integration-v1.4")
+    set(sirius_solver_TAG "antares-integration-v1.6")
 endif()
 
 
