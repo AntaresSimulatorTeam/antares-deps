@@ -1,3 +1,6 @@
+# ⚠️ Deprecation notice (6 January 2025)
+This repository was used for [Antares_Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator) and [antares-xpansion](https://github.com/AntaresSimulatorTeam/antares-xpansion) to handle external dependencies. [vcpkg]([url](https://github.com/microsoft/vcpkg/)) is now the current and preferred solution to handle dependencies, so **antares-deps is now deprecated**.
+
 # Antares dependencies build
 
  ANTARES Simulation and antaresXpansion depends on severals mandatory libraries.
